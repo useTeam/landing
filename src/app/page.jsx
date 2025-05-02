@@ -2,6 +2,7 @@
 
 import { BentoCard } from '@/components/bento-card'
 import { Button } from '@/components/button'
+import { CodeTyping } from '@/components/code-typing'
 import { Container } from '@/components/container'
 import { Footer } from '@/components/footer'
 import { Gradient } from '@/components/gradient'
@@ -19,7 +20,6 @@ import { Heading, Subheading } from '@/components/text'
 import { useLanguage } from '@/context/language-context'
 import { getTranslation } from '@/translations'
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 function Hero() {
@@ -67,46 +67,23 @@ function Hero() {
           }
         />
         <div className="relative pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-48">
-          <div className="relative">
-            <div className="pr-0 md:pr-[300px]">
-              <h1 className="font-display text-6xl/[0.9] font-medium tracking-tight text-balance text-white sm:text-8xl/[0.8] md:text-9xl/[0.8]">
+          <div className="relative flex flex-col gap-8 md:flex-row md:items-center">
+            <div className="w-full md:w-[55%] lg:w-3/5">
+              <h1 className="font-display text-6xl/[0.9] font-medium tracking-tight text-balance text-white sm:text-7xl/[0.8] md:text-8xl/[0.8]">
                 {getTranslation('hero.title', language)}
               </h1>
               <p className="mt-8 max-w-2xl text-xl/7 font-medium text-white/75 sm:text-2xl/8">
                 {getTranslation('hero.description', language)}
               </p>
-              <div className="mt-12 flex flex-col gap-x-6 gap-y-4 sm:flex-row">
+              <div className="mt-8 mb-12 flex flex-col gap-x-6 gap-y-4 sm:flex-row md:mt-12 md:mb-0">
                 <Button href="/contact">
                   {getTranslation('common.getStarted', language)}
                 </Button>
               </div>
             </div>
 
-            <div className="mt-12 block md:hidden">
-              <div className="relative mx-auto h-[250px] w-[250px] overflow-hidden rounded-2xl bg-white/10 shadow-xl ring-1 ring-white/20 backdrop-blur-lg">
-                <Image
-                  src="https://res.cloudinary.com/dkpotpaaf/image/upload/v1746139450/lscz1qpx9b3kaysdu3qz.png"
-                  alt="useTeam Cloud Platform"
-                  width={500}
-                  height={500}
-                  className="mx-auto mt-6 h-[200px] w-[200px] object-contain transition-all duration-500 hover:scale-105"
-                  priority
-                />
-              </div>
-            </div>
-
-            <div className="absolute top-0 right-0 hidden h-[300px] w-[300px] md:block">
-              <div className="relative h-full w-full overflow-hidden rounded-2xl bg-white/10 shadow-xl ring-1 ring-white/20 backdrop-blur-lg">
-                <Image
-                  src="https://res.cloudinary.com/dkpotpaaf/image/upload/v1746139450/lscz1qpx9b3kaysdu3qz.png"
-                  alt="useTeam Cloud Platform"
-                  width={500}
-                  height={500}
-                  className="absolute top-1/2 left-1/2 h-[250px] w-[250px] -translate-x-1/2 -translate-y-1/2 transform object-contain transition-all duration-500 hover:scale-105"
-                  priority
-                />
-                <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-purple-500/30 to-blue-500/30 opacity-70 blur-3xl"></div>
-              </div>
+            <div className="h-[200px] w-full sm:h-[250px] md:h-[280px] md:w-[45%] lg:w-2/5">
+              <CodeTyping />
             </div>
           </div>
         </div>
