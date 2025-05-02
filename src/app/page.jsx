@@ -294,37 +294,6 @@ function DarkBentoSection() {
   )
 }
 
-function CallToAction() {
-  const { language } = useLanguage()
-  return (
-    <div className="relative mx-2">
-      <Gradient className="relative ring-1 ring-black/5 ring-inset">
-        <div className="absolute inset-2 rounded-4xl bg-white/50" />
-        <Container>
-          <div className="relative py-24 text-center">
-            <hgroup>
-              <Subheading className="text-gray-800">
-                {getTranslation('footer.sections.getStarted', language)}
-              </Subheading>
-              <p className="mt-6 text-3xl font-medium font-semibold tracking-tight text-gray-800 sm:text-5xl">
-                {getTranslation('footer.cta.title', language)}
-              </p>
-            </hgroup>
-            <p className="mx-auto mt-6 max-w-xs text-sm/6 font-semibold text-gray-700">
-              {getTranslation('footer.cta.subtitle', language)}
-            </p>
-            <div className="mt-10">
-              <Button className="w-full sm:w-auto" href="/contact">
-                {getTranslation('footer.cta.button', language)}
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </Gradient>
-    </div>
-  )
-}
-
 export default function Home() {
   return (
     <div className="overflow-hidden">
@@ -339,7 +308,6 @@ export default function Home() {
         <DarkBentoSection />
       </main>
       <Testimonials />
-      <CallToAction />
       <Footer />
     </div>
   )

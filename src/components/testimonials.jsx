@@ -2,7 +2,7 @@
 
 import { useLanguage } from '@/context/language-context'
 import { getTranslation } from '@/translations'
-import { ArrowLongRightIcon } from '@heroicons/react/20/solid'
+import { ArrowLongRightIcon } from '@heroicons/react/24/solid'
 import { clsx } from 'clsx'
 import {
   motion,
@@ -146,7 +146,7 @@ function TestimonialCard({
   )
 }
 
-function CallToAction() {
+function SimpleCallToAction() {
   const { language } = useLanguage()
   return (
     <div>
@@ -223,7 +223,7 @@ export function Testimonials() {
         )}
       </div>
       <Container className="mt-16">
-        <CallToAction />
+        <SimpleCallToAction />
       </Container>
     </div>
   )

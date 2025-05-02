@@ -4,11 +4,13 @@ import { PlusGrid, PlusGridItem, PlusGridRow } from '@/components/plus-grid'
 import { useLanguage } from '@/context/language-context'
 import { getTranslation } from '@/translations'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { Button } from './button'
 import { Container } from './container'
 import { Gradient } from './gradient'
 import { Link } from './link'
-import { Logo } from './logo'
+import { Subheading } from './text'
 
 function SitemapHeading({ children }) {
   return <h3 className="text-sm/6 font-medium text-gray-950/50">{children}</h3>
@@ -190,40 +192,75 @@ function Copyright() {
 }
 
 export function Footer() {
+  const { language } = useLanguage()
   return (
     <footer>
-      <Gradient className="relative mx-2 mt-10">
-        <div className="absolute inset-2 rounded-4xl bg-white/50" />
-        <Container>
-          <PlusGrid className="pt-16 pb-16">
-            <PlusGridRow>
-              <div className="grid grid-cols-2 gap-y-10 pb-6 lg:grid-cols-6 lg:gap-8">
-                <div className="col-span-2 flex">
-                  <PlusGridItem className="pt-6 lg:pb-6">
-                    <Logo className="h-9" />
+      <div className="relative mx-2">
+        <Gradient className="relative mb-2 rounded-4xl ring-1 ring-black/5 ring-inset">
+          <div className="absolute inset-2 rounded-4xl bg-white/50" />
+          <Container>
+            <div className="relative mb-12 border-b border-gray-200/40 py-24 text-center">
+              <hgroup>
+                <Subheading className="text-gray-800">
+                  {getTranslation('footer.sections.getStarted', language)}
+                </Subheading>
+                <p className="mt-6 text-3xl font-medium font-semibold tracking-tight text-gray-800 sm:text-5xl">
+                  {getTranslation('footer.cta.title', language)}
+                </p>
+              </hgroup>
+              <p className="mx-auto mt-6 max-w-xs text-sm/6 font-semibold text-gray-700">
+                {getTranslation('footer.cta.subtitle', language)}
+              </p>
+              <div className="mt-10">
+                <Button className="w-full sm:w-auto" href="/contact">
+                  {getTranslation('footer.cta.button', language)}
+                </Button>
+              </div>
+            </div>
+
+            <PlusGrid className="pb-16">
+              <PlusGridRow>
+                <div className="grid grid-cols-2 gap-y-10 pb-6 lg:grid-cols-6 lg:gap-8">
+                  <div className="col-span-2 flex">
+                    <PlusGridItem className="pt-6 lg:pb-6">
+                      <div className="flex cursor-pointer items-center gap-3">
+                        <div className="relative h-12 w-12">
+                          <Image
+                            src="https://res.cloudinary.com/dkpotpaaf/image/upload/v1746139449/an5bmyw9ir95tblacfgr.png"
+                            alt="useTeam Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                          />
+                        </div>
+                        <span className="text-2xl font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
+                          useTeam
+                        </span>
+                      </div>
+                    </PlusGridItem>
+                  </div>
+                  <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid lg:pt-6">
+                    <Sitemap />
+                  </div>
+                </div>
+              </PlusGridRow>
+              <PlusGridRow className="flex justify-between">
+                <div>
+                  <PlusGridItem className="py-3">
+                    <Copyright />
                   </PlusGridItem>
                 </div>
-                <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid lg:pt-6">
-                  <Sitemap />
+                <div className="flex">
+                  <PlusGridItem className="flex items-center gap-8 py-3">
+                    <SocialLinks />
+                    <ScrollToTop />
+                  </PlusGridItem>
                 </div>
-              </div>
-            </PlusGridRow>
-            <PlusGridRow className="flex justify-between">
-              <div>
-                <PlusGridItem className="py-3">
-                  <Copyright />
-                </PlusGridItem>
-              </div>
-              <div className="flex">
-                <PlusGridItem className="flex items-center gap-8 py-3">
-                  <SocialLinks />
-                  <ScrollToTop />
-                </PlusGridItem>
-              </div>
-            </PlusGridRow>
-          </PlusGrid>
-        </Container>
-      </Gradient>
+              </PlusGridRow>
+            </PlusGrid>
+          </Container>
+        </Gradient>
+      </div>
     </footer>
   )
 }

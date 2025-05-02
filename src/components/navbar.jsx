@@ -184,7 +184,12 @@ export function Navbar({ banner }) {
                       title={getTranslation('navigation.home', language)}
                     >
                       <Logo
-                        className={`h-9 ${isCompanyOrBlog ? 'text-gray-950' : 'text-white'}`}
+                        className="h-10"
+                        textClassName={
+                          isCompanyOrBlog
+                            ? 'text-gray-950'
+                            : 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
+                        }
                       />
                     </Link>
                   </PlusGridItem>
