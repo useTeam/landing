@@ -7,7 +7,7 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react'
-import { Bars2Icon } from '@heroicons/react/24/solid'
+import { Bars3BottomRightIcon } from '@heroicons/react/24/solid'
 import { AnimatePresence, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -65,13 +65,17 @@ function DesktopNav({ isCompanyOrBlog }) {
   )
 }
 
-function MobileNavButton() {
+function MobileNavButton({ isCompanyOrBlog }) {
   return (
     <DisclosureButton
-      className="flex size-12 items-center justify-center self-center rounded-lg data-hover:bg-black/5 lg:hidden"
+      className={`flex size-12 items-center justify-center self-center rounded-lg lg:hidden ${
+        isCompanyOrBlog
+          ? 'text-gray-950 hover:bg-gray-100'
+          : 'text-white hover:bg-white/10'
+      }`}
       aria-label="Open main menu"
     >
-      <Bars2Icon className="size-6" />
+      <Bars3BottomRightIcon className="size-8" />
     </DisclosureButton>
   )
 }
@@ -200,7 +204,7 @@ export function Navbar({ banner }) {
                   )}
                 </div>
                 <DesktopNav isCompanyOrBlog={isCompanyOrBlog} />
-                <MobileNavButton />
+                <MobileNavButton isCompanyOrBlog={isCompanyOrBlog} />
               </PlusGridRow>
             </PlusGrid>
             <MobileNav isCompanyOrBlog={isCompanyOrBlog} />
