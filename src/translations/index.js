@@ -45,11 +45,38 @@ const translations = {
       en: 'New Milestone: useTeam x Gravitad',
     },
   },
+  // Hero2 section (nuevo hero con videos)
+  hero2: {
+    redefine: {
+      es: 'redefi<b>n</b>e',
+      en: 'redefi<b>n</b>e',
+    },
+    software: {
+      es: 'S<b>O</b>FTWARE',
+      en: 'S<b>O</b>FTWARE',
+    },
+    tagline: {
+      es: 'Entra al Futuro.<br />Crea el Futuro.<br />Sé el Futuro.',
+      en: 'Enter the Future.<br />Create the Future. <br /> Be the Future.',
+    },
+    watchDemo: {
+      es: 'Ver demo',
+      en: 'Watch demo',
+    },
+    banner: {
+      es: 'Nuevo hito: useTeam x Gravitad',
+      en: 'New Milestone: useTeam x Gravitad',
+    },
+  },
   // Feature section
   feature: {
     title: {
-      es: 'Una vista completa de tu pipeline de ventas.',
-      en: 'A snapshot of your entire sales pipeline.',
+      es: 'Resuelve tu mayor desafío empresarial con nuestros Core Studios. Impulsa la innovación y acelera tus resultados.',
+      en: 'Overcome your biggest business challenge with our Core Studios. Drive innovation and accelerate your results.',
+    },
+    subheading: {
+      es: 'Info',
+      en: 'Info',
     },
   },
   // Bento section
