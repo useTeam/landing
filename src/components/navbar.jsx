@@ -22,7 +22,7 @@ function LanguageToggle({ isCompanyOrBlog }) {
   return (
     <button
       onClick={toggleLanguage}
-      className={`ml-4 flex items-center rounded-md px-3 py-2 text-sm font-medium ${
+      className={`flex items-center rounded-md px-3 py-2 text-sm font-medium lg:ml-4 ${
         isCompanyOrBlog
           ? 'border border-gray-200 text-gray-950 hover:bg-gray-100'
           : 'border border-white/20 text-white hover:bg-white/10'
@@ -161,6 +161,9 @@ export function Navbar({ banner }) {
   return (
     <AnimatePresence>
       <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
         className={`${
           isClient && isScrolled
             ? `fixed top-0 right-0 left-0 z-50 backdrop-blur-sm transition-all duration-300 ${

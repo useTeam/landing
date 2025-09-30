@@ -13,7 +13,7 @@ import { Link } from './link'
 import { Subheading } from './text'
 
 function SitemapHeading({ children }) {
-  return <h3 className="text-sm/6 font-medium text-gray-950/50">{children}</h3>
+  return <h3 className="py-1 text-sm/6 font-semibold text-white">{children}</h3>
 }
 
 function SitemapLinks({ children }) {
@@ -25,7 +25,7 @@ function SitemapLink(props) {
     <li>
       <Link
         {...props}
-        className="font-medium text-gray-950 data-hover:text-gray-950/75"
+        className="font-medium text-white data-hover:text-gray-950/75"
       />
     </li>
   )
@@ -96,7 +96,7 @@ function Sitemap() {
 
 function SocialIconX(props) {
   return (
-    <svg viewBox="0 0 16 16" fill="currentColor" {...props}>
+    <svg viewBox="0 0 16 16" fill="white" {...props}>
       <path d="M12.6 0h2.454l-5.36 6.778L16 16h-4.937l-3.867-5.594L2.771 16H.316l5.733-7.25L0 0h5.063l3.495 5.114L12.6 0zm-.86 14.376h1.36L4.323 1.539H2.865l8.875 12.837z" />
     </svg>
   )
@@ -104,7 +104,7 @@ function SocialIconX(props) {
 
 function SocialIconFacebook(props) {
   return (
-    <svg viewBox="0 0 16 16" fill="currentColor" {...props}>
+    <svg viewBox="0 0 16 16" fill="white" {...props}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -116,7 +116,7 @@ function SocialIconFacebook(props) {
 
 function SocialIconLinkedIn(props) {
   return (
-    <svg viewBox="0 0 16 16" fill="currentColor" {...props}>
+    <svg viewBox="0 0 16 16" fill="white" {...props}>
       <path d="M14.82 0H1.18A1.169 1.169 0 000 1.154v13.694A1.168 1.168 0 001.18 16h13.64A1.17 1.17 0 0016 14.845V1.15A1.171 1.171 0 0014.82 0zM4.744 13.64H2.369V5.996h2.375v7.644zm-1.18-8.684a1.377 1.377 0 11.52-.106 1.377 1.377 0 01-.527.103l.007.003zm10.075 8.683h-2.375V9.921c0-.885-.015-2.025-1.234-2.025-1.218 0-1.425.966-1.425 1.968v3.775H6.233V5.997H8.51v1.05h.032c.317-.601 1.09-1.235 2.246-1.235 2.405-.005 2.851 1.578 2.851 3.63v4.197z" />
     </svg>
   )
@@ -173,7 +173,7 @@ function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`rounded-full bg-gray-900 p-3 text-white shadow-md transition-all duration-300 hover:bg-gray-800 focus:outline-none ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`rounded-full bg-black p-3 text-white shadow-md transition-all duration-300 hover:bg-gray-800 focus:outline-none ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       aria-label={
         getTranslation('footer.scrollToTop', language) || 'Volver arriba'
       }
@@ -185,7 +185,7 @@ function ScrollToTop() {
 
 function Copyright() {
   return (
-    <div className="text-sm/6 text-gray-950">
+    <div className="text-sm/6 text-white">
       &copy; {new Date().getFullYear()} useTeam
     </div>
   )
@@ -195,20 +195,19 @@ export function Footer() {
   const { language } = useLanguage()
   return (
     <footer>
-      <div className="relative mx-2">
+      <div className="relative m-12">
         <Gradient className="relative mb-2 rounded-4xl ring-1 ring-black/5 ring-inset">
-          <div className="absolute inset-2 rounded-4xl bg-white/50" />
           <Container>
             <div className="relative mb-12 border-b border-gray-200/40 py-24 text-center">
               <hgroup>
-                <Subheading className="text-gray-800">
+                <Subheading className="text-white">
                   {getTranslation('footer.sections.getStarted', language)}
                 </Subheading>
-                <p className="mt-6 text-3xl font-medium font-semibold tracking-tight text-gray-800 sm:text-5xl">
+                <p className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                   {getTranslation('footer.cta.title', language)}
                 </p>
               </hgroup>
-              <p className="mx-auto mt-6 max-w-xs text-sm/6 font-semibold text-gray-700">
+              <p className="mx-auto mt-6 max-w-xs text-sm/6 font-semibold text-gray-300">
                 {getTranslation('footer.cta.subtitle', language)}
               </p>
               <div className="mt-10">
@@ -233,7 +232,7 @@ export function Footer() {
                             priority
                           />
                         </div>
-                        <span className="text-2xl font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
+                        <span className="font-bold text-2xl text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
                           useTeam
                         </span>
                       </div>

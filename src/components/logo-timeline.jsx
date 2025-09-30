@@ -31,15 +31,7 @@ export function LogoTimeline() {
   return (
     <div aria-hidden="true" className="relative h-full overflow-hidden">
       <div className="absolute inset-0 top-8 z-10 flex items-center justify-center">
-        <div
-          className="absolute inset-0 backdrop-blur-md"
-          style={{
-            maskImage: `url('data:image/svg+xml,<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" rx="12" fill="black"/></svg>')`,
-            maskPosition: 'center',
-            maskRepeat: 'no-repeat',
-          }}
-        />
-        <div className="relative flex size-24 items-center justify-center rounded-xl bg-linear-to-t from-white/5 to-white/25 shadow-sm ring-1 ring-white/10 outline outline-offset-[-5px] outline-white/5 ring-inset">
+        <div className="relative flex items-center justify-center rounded-xl bg-linear-to-t from-white/5 to-white/25 p-3 shadow-sm ring-1 ring-white/10 outline outline-offset-[-5px] outline-white/5 backdrop-blur-md ring-inset">
           <Mark className="h-9 fill-white" />
         </div>
       </div>

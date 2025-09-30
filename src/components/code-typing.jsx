@@ -105,9 +105,9 @@ export function CodeTyping() {
   return (
     <motion.div
       className="h-full w-full overflow-hidden rounded-lg border border-gray-700 bg-gray-900/90 p-6 px-7 shadow-2xl md:p-6 md:px-8"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 1, duration: 0.5 }}
     >
       <div className="mb-3 flex items-center gap-2">
         <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>

@@ -1,7 +1,8 @@
 'use client'
 
 import { clsx } from 'clsx'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import { Subheading } from './text'
 
 export function BentoCard({
@@ -12,12 +13,27 @@ export function BentoCard({
   description,
   graphic,
   fade = [],
+  direction = 'up', // 'up', 'down', 'left', 'right'
+  delay = 0,
 }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
+
+  const directions = {
+    up: { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 } },
+    down: { hidden: { opacity: 0, y: -50 }, visible: { opacity: 1, y: 0 } },
+    left: { hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0 } },
+    right: { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 } },
+  }
+
   return (
     <motion.div
-      initial="idle"
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={directions[direction]}
+      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
       whileHover="active"
-      variants={{ idle: {}, active: {} }}
       data-dark={dark ? 'true' : undefined}
       className={clsx(
         className,
