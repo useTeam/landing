@@ -4,6 +4,8 @@ import TranslationsProvider from '@/providers/TranslationProvider'
 import '@/styles/tailwind.css'
 import initTranslations from '@/app/i18n'
 import { dir } from "i18next";
+import { ScrollToTop } from '../../components/scroll-to-top'
+
 export const metadata = {
   title: {
     template: '%s - useTeam',
@@ -79,6 +81,7 @@ export default async function RootLayout({ children, params }) {
         >
           <LanguageProvider>
             <ClientHtml>{children}</ClientHtml>
+            <ScrollToTop />
           </LanguageProvider>
         </TranslationsProvider>
       </body>

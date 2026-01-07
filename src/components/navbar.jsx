@@ -19,24 +19,60 @@ import { useTranslation } from 'react-i18next'
 
 function LanguageToggle({ isCompanyOrBlog }) {
   const { handleChangeLanguage, currentLocale } = useLanguageChanger()
-  const buttonText = currentLocale === 'es' ? 'EN' : 'ES'
 
   return (
     <button
       onClick={() => handleChangeLanguage(currentLocale === 'es' ? 'en' : 'es')}
-      className={`ml-4 flex items-center rounded-md px-3 py-2 text-sm font-medium ${
+      className={`lg:ml-4 relative inline-flex items-center rounded-full p-1 transition-colors cursor-pointer ${
         isCompanyOrBlog
-          ? 'border border-gray-200 text-gray-950 hover:bg-gray-100'
-          : 'border border-white/20 text-white hover:bg-white/10'
+          ? 'bg-gray-100 hover:bg-gray-200'
+          : 'bg-white/10 hover:bg-white/20'
       }`}
       aria-label={`Cambiar a ${currentLocale === 'es' ? 'inglés' : 'español'}`}
     >
-      {buttonText}
+      {/* Fondo deslizante */}
+      <span
+        className={`absolute left-1 top-1 bottom-1 w-[2.75rem] rounded-full transition-transform duration-300 ease-in-out ${
+          isCompanyOrBlog ? 'bg-white shadow-sm' : 'bg-white/20'
+        } ${currentLocale === 'en' ? 'translate-x-[2.75rem]' : 'translate-x-0'}`}
+      />
+      
+      {/* Opción ES */}
+      <span
+        className={`relative z-10 flex items-center justify-center w-[2.75rem] py-1.5 text-sm font-semibold transition-colors ${
+          currentLocale === 'es'
+            ? isCompanyOrBlog
+              ? 'text-gray-950'
+              : 'text-white'
+            : isCompanyOrBlog
+              ? 'text-gray-500'
+              : 'text-white/50'
+        }`}
+      >
+        ES
+      </span>
+      
+      {/* Opción EN */}
+      <span
+        className={`relative z-10 flex items-center justify-center w-[2.75rem] py-1.5 text-sm font-semibold transition-colors ${
+          currentLocale === 'en'
+            ? isCompanyOrBlog
+              ? 'text-gray-950'
+              : 'text-white'
+            : isCompanyOrBlog
+              ? 'text-gray-500'
+              : 'text-white/50'
+        }`}
+      >
+        EN
+      </span>
     </button>
   )
 }
+
 function getTranslatedLinks() {
   const { t } = useTranslation(['Home'])
+  
   return [
     { href: '/contact', label: t('navbar_contact') },
     { href: '/company', label: t('navbar_company') },

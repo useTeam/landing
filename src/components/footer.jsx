@@ -134,7 +134,7 @@ function SocialLinks() {
         <SocialIconX className="size-4" />
       </Link>
       <Link
-        href="https://linkedin.com"
+        href="https://www.linkedin.com/company/useteam"
         target="_blank"
         aria-label="Visit us on LinkedIn"
         className="text-gray-950 data-hover:text-gray-950/75"
@@ -142,44 +142,6 @@ function SocialLinks() {
         <SocialIconLinkedIn className="size-4" />
       </Link>
     </>
-  )
-}
-
-function ScrollToTop() {
-  const { language } = useLanguage()
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
-    }
-
-    window.addEventListener('scroll', toggleVisibility)
-
-    return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }
-
-  return (
-    <button
-      onClick={scrollToTop}
-      className={`rounded-full bg-black p-3 text-white shadow-md transition-all duration-300 hover:bg-gray-800 focus:outline-none ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-      aria-label={
-        getTranslation('footer.scrollToTop', language) || 'Volver arriba'
-      }
-    >
-      <ArrowUpIcon className="h-5 w-5" />
-    </button>
   )
 }
 
@@ -250,9 +212,8 @@ export function Footer() {
                   </PlusGridItem>
                 </div>
                 <div className="flex">
-                  <PlusGridItem className="flex items-center gap-8 py-3">
+                  <PlusGridItem className="flex items-center gap-5 py-3">
                     <SocialLinks />
-                    <ScrollToTop />
                   </PlusGridItem>
                 </div>
               </PlusGridRow>
