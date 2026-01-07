@@ -3,6 +3,8 @@
 import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import logoImage from '@/assets/logo/logo.svg'
+import bigLogo from '@/assets/logo/big-logo.svg'
 
 export function Logo({ className, textClassName }) {
   return (
@@ -11,16 +13,16 @@ export function Logo({ className, textClassName }) {
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="relative h-9 w-9">
+      <div className="relative">
         <Image
-          src="https://res.cloudinary.com/dkpotpaaf/image/upload/v1746139449/an5bmyw9ir95tblacfgr.png"
+          src={logoImage}
           alt="useTeam Logo"
-          fill
+          width={144}
+          height={144}
           className="object-contain"
           priority
         />
       </div>
-      <span className={clsx('font-bold', textClassName)}>useTeam</span>
     </motion.div>
   )
 }
@@ -28,20 +30,18 @@ export function Logo({ className, textClassName }) {
 export function Mark({ className }) {
   return (
     <motion.div
-      className={clsx('flex cursor-pointer items-center gap-1', className)}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.2 }}
+      className={clsx('flex items-center gap-1', className)}
     >
-      <div className="relative h-8 w-8">
+      <div className="relative">
         <Image
-          src="https://res.cloudinary.com/dkpotpaaf/image/upload/v1746139449/an5bmyw9ir95tblacfgr.png"
+          src={logoImage}
           alt="useTeam Logo"
-          fill
+          width={112}
+          height={112}
           className="object-contain"
           priority
         />
       </div>
-      <span className="text-lg font-semibold text-white">useTeam</span>
     </motion.div>
   )
 }
@@ -52,11 +52,12 @@ export function MarkWithoutText({ className }) {
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="relative h-8 w-8">
+      <div className="relative">
         <Image
-          src="https://res.cloudinary.com/dkpotpaaf/image/upload/v1746139449/an5bmyw9ir95tblacfgr.png"
+          src={bigLogo}
           alt="useTeam Logo"
-          fill
+          width={32}
+          height={32}
           className="object-contain"
           priority
         />
