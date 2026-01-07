@@ -14,31 +14,33 @@ import { useEffect, useState } from 'react'
 import { Link } from './link'
 import { Logo } from './logo'
 import { PlusGrid, PlusGridItem, PlusGridRow } from './plus-grid'
+import useLanguageChanger from '@/hooks/useLanguageChanger'
+import { useTranslation } from 'react-i18next'
 
 function LanguageToggle({ isCompanyOrBlog }) {
-  const { language, toggleLanguage } = useLanguage()
-  const buttonText = language === 'es' ? 'EN' : 'ES'
+  const { handleChangeLanguage, currentLocale } = useLanguageChanger()
+  const buttonText = currentLocale === 'es' ? 'EN' : 'ES'
 
   return (
     <button
-      onClick={toggleLanguage}
-      className={`flex items-center rounded-md px-3 py-2 text-sm font-medium lg:ml-4 ${
+      onClick={() => handleChangeLanguage(currentLocale === 'es' ? 'en' : 'es')}
+      className={`ml-4 flex items-center rounded-md px-3 py-2 text-sm font-medium ${
         isCompanyOrBlog
           ? 'border border-gray-200 text-gray-950 hover:bg-gray-100'
           : 'border border-white/20 text-white hover:bg-white/10'
       }`}
-      aria-label={`Cambiar a ${language === 'es' ? 'inglés' : 'español'}`}
+      aria-label={`Cambiar a ${currentLocale === 'es' ? 'inglés' : 'español'}`}
     >
       {buttonText}
     </button>
   )
 }
-
-function getTranslatedLinks(language) {
+function getTranslatedLinks() {
+  const { t } = useTranslation(['Home'])
   return [
-    { href: '/contact', label: getTranslation('navigation.contact', language) },
-    { href: '/company', label: getTranslation('navigation.company', language) },
-    { href: '/blog', label: getTranslation('navigation.blog', language) },
+    { href: '/contact', label: t('navbar_contact') },
+    { href: '/company', label: t('navbar_company') },
+    { href: '/blog', label: "Blog" },
   ]
 }
 
