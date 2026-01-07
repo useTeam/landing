@@ -13,14 +13,14 @@ export default async function initTranslations(
 
   i18nInstance.use(initReactI18next);
 
-  if (!resources) {
-    i18nInstance.use(
-      resourcesToBackend(
-        (language, namespace) =>
-          import(`../../locales/${language}/${namespace}.json`)
-      )
-    );
-  }
+  // Siempre configurar resourcesToBackend para permitir carga dinámica
+  // incluso si se pasan recursos iniciales
+  i18nInstance.use(
+    resourcesToBackend(
+      (language, namespace) =>
+        import(`../../locales/${language}/${namespace}.json`)
+    )
+  );
 
   await i18nInstance.init({
     lng: locale,
