@@ -7,7 +7,7 @@ export function Gradient({ className, ...props }) {
       {...props}
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0, duration: 0.5 }}
+      transition={{ delay: 0.15, duration: 0.5 }}
       className={clsx(
         className,
         'bg-[linear-gradient(325deg,var(--Secondary-Color,#00C6FF)_1.38%,var(--Primary-Color,#007BFF)_23.26%,#0052A9_36.39%,var(--Black,#000)_96.19%)]',

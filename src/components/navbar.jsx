@@ -1,6 +1,7 @@
 'use client'
 
 import { useLanguage } from '@/context/language-context'
+import useLanguageChanger from '@/hooks/useLanguageChanger'
 import { getTranslation } from '@/translations'
 import {
   Disclosure,
@@ -11,11 +12,10 @@ import { Bars3BottomRightIcon } from '@heroicons/react/24/solid'
 import { AnimatePresence, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from './link'
 import { Logo } from './logo'
 import { PlusGrid, PlusGridItem, PlusGridRow } from './plus-grid'
-import useLanguageChanger from '@/hooks/useLanguageChanger'
-import { useTranslation } from 'react-i18next'
 
 function LanguageToggle({ isCompanyOrBlog }) {
   const { handleChangeLanguage, currentLocale } = useLanguageChanger()
@@ -23,7 +23,7 @@ function LanguageToggle({ isCompanyOrBlog }) {
   return (
     <button
       onClick={() => handleChangeLanguage(currentLocale === 'es' ? 'en' : 'es')}
-      className={`lg:ml-4 relative inline-flex items-center rounded-full p-1 transition-colors cursor-pointer ${
+      className={`relative inline-flex cursor-pointer items-center rounded-full p-1 transition-colors lg:ml-4 ${
         isCompanyOrBlog
           ? 'bg-gray-100 hover:bg-gray-200'
           : 'bg-white/10 hover:bg-white/20'
@@ -32,14 +32,14 @@ function LanguageToggle({ isCompanyOrBlog }) {
     >
       {/* Fondo deslizante */}
       <span
-        className={`absolute left-1 top-1 bottom-1 w-[2.75rem] rounded-full transition-transform duration-300 ease-in-out ${
+        className={`absolute top-1 bottom-1 left-1 w-[2.75rem] rounded-full transition-transform duration-300 ease-in-out ${
           isCompanyOrBlog ? 'bg-white shadow-sm' : 'bg-white/20'
         } ${currentLocale === 'en' ? 'translate-x-[2.75rem]' : 'translate-x-0'}`}
       />
-      
+
       {/* Opción ES */}
       <span
-        className={`relative z-10 flex items-center justify-center w-[2.75rem] py-1.5 text-sm font-semibold transition-colors ${
+        className={`relative z-10 flex w-[2.75rem] items-center justify-center py-1.5 text-sm font-semibold transition-colors ${
           currentLocale === 'es'
             ? isCompanyOrBlog
               ? 'text-gray-950'
@@ -51,10 +51,10 @@ function LanguageToggle({ isCompanyOrBlog }) {
       >
         ES
       </span>
-      
+
       {/* Opción EN */}
       <span
-        className={`relative z-10 flex items-center justify-center w-[2.75rem] py-1.5 text-sm font-semibold transition-colors ${
+        className={`relative z-10 flex w-[2.75rem] items-center justify-center py-1.5 text-sm font-semibold transition-colors ${
           currentLocale === 'en'
             ? isCompanyOrBlog
               ? 'text-gray-950'
@@ -71,18 +71,20 @@ function LanguageToggle({ isCompanyOrBlog }) {
 }
 
 function getTranslatedLinks() {
-  const { t } = useTranslation(['Home'])
-  
+  const { t, i18n } = useTranslation(['Home'])
+
+  // Forzar re-render cuando cambia el idioma
+  const currentLanguage = i18n.language
+
   return [
-    { href: '/contact', label: t('navbar_contact') },
-    { href: '/company', label: t('navbar_company') },
-    { href: '/blog', label: "Blog" },
+    { href: '/contact', label: t('navbar_contact', { lng: currentLanguage }) },
+    { href: '/company', label: t('navbar_company', { lng: currentLanguage }) },
+    { href: '/blog', label: 'Blog' },
   ]
 }
 
 function DesktopNav({ isCompanyOrBlog }) {
-  const { language } = useLanguage()
-  const translatedLinks = getTranslatedLinks(language)
+  const translatedLinks = getTranslatedLinks()
 
   return (
     <nav className="relative hidden items-center lg:flex">
@@ -119,8 +121,7 @@ function MobileNavButton({ isCompanyOrBlog }) {
 }
 
 function MobileNav({ isCompanyOrBlog }) {
-  const { language } = useLanguage()
-  const translatedLinks = getTranslatedLinks(language)
+  const translatedLinks = getTranslatedLinks()
 
   return (
     <DisclosurePanel className="lg:hidden">

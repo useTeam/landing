@@ -184,7 +184,7 @@ function Hero() {
       {isScrolled && (
         <div style={{ height: `${navbarHeight}px` }} className="w-full"></div>
       )}
-      <Gradient className="absolute inset-3 bottom-0 rounded-3xl ring-1 ring-black/5 ring-inset lg:inset-8 lg:rounded-4xl" />
+      <Gradient className="absolute inset-3 bottom-0 rounded-3xl ring-1 ring-black/5 ring-inset lg:inset-8 lg:rounded-4xl"/>
       <Container className="relative">
         <Navbar
           banner={
