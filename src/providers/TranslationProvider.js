@@ -27,16 +27,27 @@ export default function TranslationsProvider({
   // Escuchar cambios de idioma en el cliente y cargar recursos dinámicamente
   useEffect(() => {
     if (i18nInstance) {
+      const loadingResources = new Set(); // Prevenir cargas duplicadas
+      
       const handleLanguageChanged = async (lng) => {
         // Cargar los recursos del nuevo idioma si no están cargados
         for (const namespace of namespaces) {
-          if (!i18nInstance.hasResourceBundle(lng, namespace)) {
-            try {
-              const module = await import(`../../locales/${lng}/${namespace}.json`);
-              i18nInstance.addResourceBundle(lng, namespace, module.default, true, true);
-            } catch (error) {
-              console.error(`Error loading resources for ${lng}/${namespace}:`, error);
-            }
+          const resourceKey = `${lng}:${namespace}`;
+          
+          // Si ya está cargando o ya está cargado, saltar
+          if (loadingResources.has(resourceKey) || i18nInstance.hasResourceBundle(lng, namespace)) {
+            continue;
+          }
+
+          loadingResources.add(resourceKey);
+          
+          try {
+            const module = await import(`../../locales/${lng}/${namespace}.json`);
+            i18nInstance.addResourceBundle(lng, namespace, module.default, true, true);
+          } catch (error) {
+            console.error(`Error loading resources for ${lng}/${namespace}:`, error);
+          } finally {
+            loadingResources.delete(resourceKey);
           }
         }
       };
