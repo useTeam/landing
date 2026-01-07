@@ -1,7 +1,9 @@
 import { ClientHtml } from '@/components/client-html'
 import { LanguageProvider } from '@/context/language-context'
+import TranslationsProvider from '@/providers/TranslationProvider'
 import '@/styles/tailwind.css'
-
+import initTranslations from '@/app/i18n'
+import { dir } from "i18next";
 export const metadata = {
   title: {
     template: '%s - useTeam',
@@ -36,9 +38,12 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children, params }) {
+  const i18nNamespaces = ['Home', 'commons']
+  const { locale } = (await params) || 'en'
+  const { resources } = await initTranslations(locale, i18nNamespaces)
   return (
-    <html lang="es">
+    <html lang={locale} dir={dir(locale)}>
       <head>
         <link
           rel="stylesheet"
@@ -67,9 +72,15 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="text-gray-950 antialiased">
-        <LanguageProvider>
-          <ClientHtml>{children}</ClientHtml>
-        </LanguageProvider>
+        <TranslationsProvider
+          locale={locale}
+          namespaces={i18nNamespaces}
+          resources={resources}
+        >
+          <LanguageProvider>
+            <ClientHtml>{children}</ClientHtml>
+          </LanguageProvider>
+        </TranslationsProvider>
       </body>
     </html>
   )
