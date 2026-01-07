@@ -6,7 +6,7 @@ import initTranslations from '@/app/i18n'
 import { dir } from "i18next";
 import { cookies } from 'next/headers'
 import i18nConfig from '../../i18nConfig'
-// import { ScrollToTop } from '../components/scroll-to-top'
+import { ScrollToTop } from '../components/scroll-to-top'
 
 export const metadata = {
   title: {
@@ -84,7 +84,7 @@ export default async function RootLayout({ children }) {
         >
           <LanguageProvider>
             <ClientHtml>{children}</ClientHtml>
-            {/* <ScrollToTop /> */}
+            <ScrollToTop />
           </LanguageProvider>
         </TranslationsProvider>
       </body>

@@ -11,6 +11,7 @@ import { Container } from './container'
 import { Gradient } from './gradient'
 import { Link } from './link'
 import { Subheading } from './text'
+import { Logo } from './logo'
 
 function SitemapHeading({ children }) {
   return <h3 className="py-1 text-sm/6 font-semibold text-white">{children}</h3>
@@ -182,22 +183,9 @@ export function Footer() {
             <PlusGrid className="pb-16">
               <PlusGridRow>
                 <div className="grid grid-cols-2 gap-y-10 pb-6 lg:grid-cols-6 lg:gap-8">
-                  <div className="col-span-2 flex">
+                  <div className="col-span-2 flex items-start justify-start">
                     <PlusGridItem className="pt-6 lg:pb-6">
-                      <div className="flex cursor-pointer items-center gap-3">
-                        <div className="relative h-12 w-12">
-                          <Image
-                            src="https://res.cloudinary.com/dkpotpaaf/image/upload/v1746139449/an5bmyw9ir95tblacfgr.png"
-                            alt="useTeam Logo"
-                            fill
-                            className="object-contain"
-                            priority
-                          />
-                        </div>
-                        <span className="font-bold text-2xl text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
-                          useTeam
-                        </span>
-                      </div>
+                      <Logo />
                     </PlusGridItem>
                   </div>
                   <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid lg:pt-6">
