@@ -4,7 +4,9 @@ import TranslationsProvider from '@/providers/TranslationProvider'
 import '@/styles/tailwind.css'
 import initTranslations from '@/app/i18n'
 import { dir } from "i18next";
-import { ScrollToTop } from '../../components/scroll-to-top'
+import { cookies } from 'next/headers'
+import i18nConfig from '../../i18nConfig'
+// import { ScrollToTop } from '../components/scroll-to-top'
 
 export const metadata = {
   title: {
@@ -40,9 +42,10 @@ export const metadata = {
   },
 }
 
-export default async function RootLayout({ children, params }) {
+export default async function RootLayout({ children }) {
   const i18nNamespaces = ['Home', 'commons']
-  const { locale } = (await params) || 'en'
+  const cookieStore = await cookies()
+  const locale = cookieStore.get('NEXT_LOCALE')?.value || i18nConfig.defaultLocale
   const { resources } = await initTranslations(locale, i18nNamespaces)
   return (
     <html lang={locale} dir={dir(locale)}>
@@ -81,7 +84,7 @@ export default async function RootLayout({ children, params }) {
         >
           <LanguageProvider>
             <ClientHtml>{children}</ClientHtml>
-            <ScrollToTop />
+            {/* <ScrollToTop /> */}
           </LanguageProvider>
         </TranslationsProvider>
       </body>

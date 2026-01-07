@@ -10,26 +10,21 @@ export default function useLanguageChanger() {
   const currentPathname = usePathname();
 
   // Esta es la función que será devuelta por el Hook
-  const handleChangeLanguage = (newLocale) => {
+  const handleChangeLanguage = async (newLocale) => {
     // set cookie for next-i18n-router
     const days = 30;
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     const expires = date.toUTCString();
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`;
+    
+    // Sincronizar con localStorage
+    localStorage.setItem('language', newLocale);
 
-    // redirect to the new locale path
-    if (
-      currentLocale === i18nConfig.defaultLocale &&
-      !i18nConfig.prefixDefault
-    ) {
-      router.push('/' + newLocale);
-    } else {
-      router.push(
-        currentPathname.replace(`/${currentLocale}`, `/${newLocale}`)
-      );
-    }
-
+    // Cambiar el idioma en i18n y cargar los recursos
+    await i18n.changeLanguage(newLocale);
+    
+    // Refrescar la página para que el servidor cargue los recursos correctos
     router.refresh();
   };
   
