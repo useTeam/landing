@@ -202,10 +202,10 @@ function Hero() {
         <div className="relative pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-48">
           <div className="relative flex w-full flex-col items-center justify-center gap-8 md:items-center lg:flex-row ">
             <div className="w-full lg:w-1/2 xl:w-1/2">
-              <h1 className="animacionInferiorTexto  max-w-sm font-display text-4xl/[0.9] font-medium tracking-tight text-balance text-white sm:text-7xl/[0.8] md:text-8xl/[0.9] lg:text-6xl/[0.9] xl:text-8xl/[0.9]">
+              <h1 className="animacionInferiorTexto max-w-sm font-display text-5xl/[0.9] font-medium tracking-tight text-balance text-white sm:text-7xl/[0.8] md:text-8xl/[0.9] lg:text-6xl/[0.9] xl:text-8xl/[0.9]">
                 {getTranslation('hero.title', language)}
               </h1>
-              <p className="animacionSuperiorTexto mt-8 max-w-2xl text-base/7 font-medium text-white/75 sm:text-2xl/8 lg:text-[1.2rem] xl:text-2xl/[1.5]">
+              <p className="animacionSuperiorTexto mt-8 max-w-2xl text-lg/7 font-medium text-white/75 sm:text-2xl/8 lg:text-[1.2rem] xl:text-2xl/[1.5]">
                 {getTranslation('hero.description', language)}
               </p>
               <div className="animacionSuperiorTexto mt-8 flex flex-col gap-x-6 gap-y-4 sm:flex-row md:mb-0">

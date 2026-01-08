@@ -227,7 +227,7 @@ export function Navbar({ banner }) {
         }`}
       >
         <div
-          className={`${isClient && isScrolled ? 'mx-auto max-w-7xl px-4 md:px-4  sm:px-6 lg:px-8 ' : 'px-0 lg:px-8'}`}
+          className={`${isClient && isScrolled ? 'mx-auto max-w-7xl px-4 sm:px-4 lg:px-8 xl:px-8 2xl:px-0' : 'px-0'}`}
         >
           <Disclosure
             as="header"
