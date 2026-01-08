@@ -108,11 +108,11 @@ function DesktopNav({ useCompanyStyles, gridColor, isCompanyOrBlog }) {
 function MobileNavButton({ useCompanyStyles }) {
   return (
     <DisclosureButton
-      className={`flex size-12 items-center justify-center self-center rounded-lg lg:hidden ${
-        useCompanyStyles
-          ? 'text-gray-950 hover:bg-gray-100'
-          : 'text-white hover:bg-white/10'
-      }`}
+    className={`flex size-12 items-center justify-end self-center rounded-lg lg:hidden ${
+      useCompanyStyles
+        ? 'text-gray-950 hover:bg-gray-100'
+        : 'text-white hover:bg-white/10'
+    }`}
       aria-label="Open main menu"
     >
       <Bars3BottomRightIcon className="size-8" />
@@ -227,7 +227,7 @@ export function Navbar({ banner }) {
         }`}
       >
         <div
-          className={`${isClient && isScrolled ? 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-0' : ''}`}
+          className={`${isClient && isScrolled ? 'mx-auto max-w-7xl px-4 md:px-4  sm:px-6 lg:px-8 ' : 'px-0 lg:px-8'}`}
         >
           <Disclosure
             as="header"

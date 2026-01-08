@@ -93,62 +93,64 @@ function CoreStudiosSection() {
 
   return (
     <div className="relative overflow-hidden bg-black py-24 sm:py-32">
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Title Section */}
-        <Subheading>
-          {getTranslation('feature.subheading', language)}
-        </Subheading>
+      <Container>
+        <div className="relative ">
+          {/* Title Section */}
+          <Subheading>
+            {getTranslation('feature.subheading', language)}
+          </Subheading>
 
-        <AnimatedHeading
-          as="h2"
-          className="mb-16 font-bold text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl"
-        >
-          {getTranslation('feature.title', language)}
-        </AnimatedHeading>
+          <AnimatedHeading
+            as="h2"
+            className="mb-16 font-bold text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl"
+          >
+            {getTranslation('feature.title', language)}
+          </AnimatedHeading>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <CoreStudioCard
-            eyebrow="DATA AND AI"
-            title="La IA ya está transformando a muchas empresas. ¿Estás aprovechando su potencial?"
-            size="large"
-            direction="left"
-            delay={0.1}
-          />
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <CoreStudioCard
+              eyebrow="DATA AND AI"
+              title="La IA ya está transformando a muchas empresas. ¿Estás aprovechando su potencial?"
+              size="large"
+              direction="left"
+              delay={0.1}
+            />
 
-          <CoreStudioCard
-            eyebrow="BUSINESS HACKING"
-            title="¿Cuál es tu próxima fuente de ingresos?"
-            size="medium"
-            direction="right"
-            delay={0.2}
-          />
+            <CoreStudioCard
+              eyebrow="BUSINESS HACKING"
+              title="¿Cuál es tu próxima fuente de ingresos?"
+              size="medium"
+              direction="right"
+              delay={0.2}
+            />
 
-          <CoreStudioCard
-            eyebrow="PROCESS OPTIMIZATION"
-            title="Eficiencia liderada por la tecnología."
-            size="medium"
-            direction="left"
-            delay={0.3}
-          />
+            <CoreStudioCard
+              eyebrow="PROCESS OPTIMIZATION"
+              title="Eficiencia liderada por la tecnología."
+              size="medium"
+              direction="left"
+              delay={0.3}
+            />
 
-          <CoreStudioCard
-            eyebrow="FAST CODE"
-            title="Superapps y low code: ¿Cómo transformarán el futuro?"
-            size="medium"
-            direction="up"
-            delay={0.4}
-          />
+            <CoreStudioCard
+              eyebrow="FAST CODE"
+              title="Superapps y low code: ¿Cómo transformarán el futuro?"
+              size="medium"
+              direction="up"
+              delay={0.4}
+            />
 
-          <CoreStudioCard
-            eyebrow="CONNECTED EXPERIENCES"
-            title="Deleita a tus clientes para crear fans para toda la vida"
-            size="medium"
-            direction="right"
-            delay={0.5}
-          />
+            <CoreStudioCard
+              eyebrow="CONNECTED EXPERIENCES"
+              title="Deleita a tus clientes para crear fans para toda la vida"
+              size="medium"
+              direction="right"
+              delay={0.5}
+            />
+          </div>
         </div>
-      </div>
+      </Container>
     </div>
   )
 }
@@ -180,11 +182,11 @@ function Hero() {
   }, [])
 
   return (
-    <div className="relative">
+    <div className="relative px-4">
       {isScrolled && (
         <div style={{ height: `${navbarHeight}px` }} className="w-full"></div>
       )}
-      <Gradient className="absolute inset-3 bottom-0 rounded-3xl ring-1 ring-black/5 ring-inset lg:inset-8 lg:rounded-4xl"/>
+      <Gradient className="absolute inset-3 bottom-0 rounded-3xl ring-1 ring-black/5 ring-inset lg:inset-8 lg:rounded-4xl" />
       <Container className="relative">
         <Navbar
           banner={
@@ -198,12 +200,12 @@ function Hero() {
           }
         />
         <div className="relative pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-48">
-          <div className="relative flex flex-col gap-8 md:flex-row md:items-center">
-            <div className="w-full md:w-[55%] lg:w-3/5">
-              <h1 className="animacionInferior max-w-sm font-display text-4xl/[0.9] font-medium tracking-tight text-balance text-white sm:text-7xl/[0.8] md:text-8xl/[0.9]">
+          <div className="relative flex w-full flex-col items-center justify-center gap-8 md:items-center lg:flex-row ">
+            <div className="w-full lg:w-1/2 xl:w-1/2">
+              <h1 className="animacionInferiorTexto  max-w-sm font-display text-4xl/[0.9] font-medium tracking-tight text-balance text-white sm:text-7xl/[0.8] md:text-8xl/[0.9] lg:text-6xl/[0.9] xl:text-8xl/[0.9]">
                 {getTranslation('hero.title', language)}
               </h1>
-              <p className="animacionSuperiorTexto mt-8 max-w-2xl text-base/7 font-medium text-white/75 sm:text-2xl/8">
+              <p className="animacionSuperiorTexto mt-8 max-w-2xl text-base/7 font-medium text-white/75 sm:text-2xl/8 lg:text-[1.2rem] xl:text-2xl/[1.5]">
                 {getTranslation('hero.description', language)}
               </p>
               <div className="animacionSuperiorTexto mt-8 flex flex-col gap-x-6 gap-y-4 sm:flex-row md:mb-0">
@@ -213,7 +215,7 @@ function Hero() {
               </div>
             </div>
 
-            <div className="h-[200px] w-full sm:h-[250px] md:h-[280px] md:w-[45%] lg:w-2/5">
+            <div className="h-[200px] w-full sm:h-[250px] md:h-[280px] lg:w-1/2 xl:w-1/2">
               <CodeTyping />
             </div>
           </div>
