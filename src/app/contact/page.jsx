@@ -8,6 +8,8 @@ import { Navbar } from '@/components/navbar'
 import { Heading, Lead, Subheading } from '@/components/text'
 import { useLanguage } from '@/context/language-context'
 import { getTranslation } from '@/translations'
+import Lenis from 'lenis'
+import { useEffect, useState } from 'react'
 
 // Metadata se maneja en una página separada (no-client)
 // export const metadata = {
@@ -114,26 +116,82 @@ function ContactInfo() {
 
 export default function Contact() {
   const { language } = useLanguage()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [navbarHeight, setNavbarHeight] = useState(0)
+
+  // Inicializar Lenis para smooth scroll
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
+
+  // Detectar cuando la navbar se vuelve fixed y obtener su altura
+  useEffect(() => {
+    const navbar = document.querySelector('header')
+    if (navbar) {
+      setNavbarHeight(navbar.offsetHeight)
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <main className="overflow-hidden">
       <GradientBackground />
-      <Container>
-        <Navbar />
-        <div className="mt-16 mb-32">
-          <Subheading>Contact Us</Subheading>
-          <Heading as="h1" className="mt-2">
-            {getTranslation('contact.title', language)}
-          </Heading>
-          <Lead className="mt-6 max-w-3xl">
-            {getTranslation('contact.subtitle', language)}
-          </Lead>
-          <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-2">
-            <ContactForm />
-            <ContactInfo />
+      <div className="relative">
+        {isScrolled && (
+          <div style={{ height: `${navbarHeight}px` }} className="w-full"></div>
+        )}
+        <Container>
+          <Navbar />
+          <div className="mt-16 mb-32">
+            <Subheading>Contact Us</Subheading>
+            <Heading as="h1" className="mt-2">
+              {getTranslation('contact.title', language)}
+            </Heading>
+            <Lead className="mt-6 max-w-3xl">
+              {getTranslation('contact.subtitle', language)}
+            </Lead>
+            <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-2">
+              <ContactForm />
+              <ContactInfo />
+            </div>
           </div>
-        </div>
-      </Container>
-      <Footer />
+        </Container>
+        <Footer />
+      </div>
     </main>
   )
 }

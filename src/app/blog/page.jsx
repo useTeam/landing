@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/components/button'
 import { Container } from '@/components/container'
 import { Footer } from '@/components/footer'
@@ -22,21 +24,21 @@ import {
 } from '@heroicons/react/16/solid'
 import { clsx } from 'clsx'
 import dayjs from 'dayjs'
-import { notFound } from 'next/navigation'
+import Lenis from 'lenis'
+import { useEffect, useState } from 'react'
 
-export const metadata = {
-  title: 'Blog',
-  description:
-    'Stay informed with product updates, company news, and insights on how to sell smarter at your company.',
-}
+// Metadata se maneja en una página separada (no-client)
+// export const metadata = {
+//   title: 'Blog',
+//   description:
+//     'Stay informed with product updates, company news, and insights on how to sell smarter at your company.',
+// }
 
 const postsPerPage = 5
 
-async function FeaturedPosts() {
-  let featuredPosts = await getFeaturedPosts(3)
-
-  if (featuredPosts.length === 0) {
-    return
+function FeaturedPosts({ featuredPosts }) {
+  if (!featuredPosts || featuredPosts.length === 0) {
+    return null
   }
 
   return (
@@ -92,11 +94,9 @@ async function FeaturedPosts() {
   )
 }
 
-async function Categories({ selected }) {
-  let categories = await getCategories()
-
-  if (categories.length === 0) {
-    return
+function Categories({ selected, categories }) {
+  if (!categories || categories.length === 0) {
+    return null
   }
 
   return (
@@ -143,18 +143,8 @@ async function Categories({ selected }) {
   )
 }
 
-async function Posts({ page, category }) {
-  let posts = await getPosts(
-    (page - 1) * postsPerPage,
-    page * postsPerPage,
-    category,
-  )
-
-  if (posts.length === 0 && (page > 1 || category)) {
-    notFound()
-  }
-
-  if (posts.length === 0) {
+function Posts({ posts }) {
+  if (!posts || posts.length === 0) {
     return <p className="mt-6 text-gray-500">No posts found.</p>
   }
 
@@ -204,7 +194,7 @@ async function Posts({ page, category }) {
   )
 }
 
-async function Pagination({ page, category }) {
+function Pagination({ page, category, totalPosts }) {
   function url(page) {
     let params = new URLSearchParams()
 
@@ -214,7 +204,6 @@ async function Pagination({ page, category }) {
     return params.size !== 0 ? `/blog?${params.toString()}` : '/blog'
   }
 
-  let totalPosts = await getPostsCount(category)
   let hasPreviousPage = page - 1
   let previousPageUrl = hasPreviousPage ? url(page - 1) : undefined
   let hasNextPage = page * postsPerPage < totalPosts
@@ -222,7 +211,7 @@ async function Pagination({ page, category }) {
   let pageCount = Math.ceil(totalPosts / postsPerPage)
 
   if (pageCount < 2) {
-    return
+    return null
   }
 
   return (
@@ -260,40 +249,168 @@ async function Pagination({ page, category }) {
   )
 }
 
-export default async function Blog({ searchParams }) {
-  let page =
-    'page' in searchParams
-      ? typeof searchParams.page === 'string' && parseInt(searchParams.page) > 1
-        ? parseInt(searchParams.page)
-        : notFound()
-      : 1
+export default function Blog({ searchParams }) {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [navbarHeight, setNavbarHeight] = useState(0)
+  const [page, setPage] = useState(1)
+  const [category, setCategory] = useState(undefined)
+  const [blogData, setBlogData] = useState(null)
 
-  let category =
-    typeof searchParams.category === 'string'
-      ? searchParams.category
-      : undefined
+  // Inicializar Lenis para smooth scroll
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
+
+  // Detectar cuando la navbar se vuelve fixed y obtener su altura
+  useEffect(() => {
+    const navbar = document.querySelector('header')
+    if (navbar) {
+      setNavbarHeight(navbar.offsetHeight)
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  // Procesar searchParams del cliente
+  useEffect(() => {
+    let currentPage =
+      'page' in searchParams
+        ? typeof searchParams.page === 'string' &&
+          parseInt(searchParams.page) > 1
+          ? parseInt(searchParams.page)
+          : 1
+        : 1
+
+    let currentCategory =
+      typeof searchParams.category === 'string'
+        ? searchParams.category
+        : undefined
+
+    setPage(currentPage)
+    setCategory(currentCategory)
+  }, [searchParams])
+
+  // Cargar datos del blog
+  useEffect(() => {
+    async function loadBlogData() {
+      try {
+        const [featuredPosts, categories, posts, totalPosts] = await Promise.all([
+          page === 1 && !category ? getFeaturedPosts(3) : Promise.resolve([]),
+          getCategories(),
+          getPosts(
+            (page - 1) * postsPerPage,
+            page * postsPerPage,
+            category,
+          ),
+          getPostsCount(category),
+        ])
+
+        if (posts.length === 0 && (page > 1 || category)) {
+          // En lugar de notFound(), simplemente no mostramos contenido
+          setBlogData({
+            featuredPosts: [],
+            categories: [],
+            posts: [],
+            totalPosts: 0,
+          })
+          return
+        }
+
+        setBlogData({
+          featuredPosts,
+          categories,
+          posts,
+          totalPosts,
+        })
+      } catch (error) {
+        console.error('Error loading blog data:', error)
+      }
+    }
+
+    loadBlogData()
+  }, [page, category])
+
+  if (!blogData) {
+    return (
+      <main className="overflow-hidden">
+        <GradientBackground />
+        <Container>
+          <Navbar />
+          <div className="mt-16">Loading...</div>
+        </Container>
+      </main>
+    )
+  }
+
+  const { featuredPosts, categories, posts, totalPosts } = blogData
 
   return (
     <main className="overflow-hidden">
       <GradientBackground />
-      <Container>
-        <Navbar />
-        <Subheading className="mt-16">Blog</Subheading>
-        <Heading as="h1" className="mt-2">
-          What's happening at useTeam.
-        </Heading>
-        <Lead className="mt-6 max-w-3xl">
-          Stay informed with product updates, company news, and insights on how
-          to sell smarter at your company.
-        </Lead>
-      </Container>
-      {page === 1 && !category && <FeaturedPosts />}
-      <Container className="mt-16 pb-24">
-        <Categories selected={category} />
-        <Posts page={page} category={category} />
-        <Pagination page={page} category={category} />
-      </Container>
-      <Footer />
+      <div className="relative">
+        {isScrolled && (
+          <div style={{ height: `${navbarHeight}px` }} className="w-full"></div>
+        )}
+        <Container>
+          <Navbar />
+          <Subheading className="mt-16">Blog</Subheading>
+          <Heading as="h1" className="mt-2">
+            What's happening at useTeam.
+          </Heading>
+          <Lead className="mt-6 max-w-3xl">
+            Stay informed with product updates, company news, and insights on how
+            to sell smarter at your company.
+          </Lead>
+        </Container>
+        {page === 1 && !category && featuredPosts && featuredPosts.length > 0 && (
+          <FeaturedPosts featuredPosts={featuredPosts} />
+        )}
+        <Container className="mt-16 pb-24">
+          <Categories selected={category} categories={categories} />
+          <Posts posts={posts} />
+          {totalPosts > 0 && (
+            <Pagination
+              page={page}
+              category={category}
+              totalPosts={totalPosts}
+            />
+          )}
+        </Container>
+        <Footer />
+      </div>
     </main>
   )
 }

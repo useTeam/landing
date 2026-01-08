@@ -17,15 +17,15 @@ import { Link } from './link'
 import { Logo } from './logo'
 import { PlusGrid, PlusGridItem, PlusGridRow } from './plus-grid'
 
-function LanguageToggle({ isCompanyOrBlog }) {
+function LanguageToggle({ useCompanyStyles }) {
   const { handleChangeLanguage, currentLocale } = useLanguageChanger()
 
   return (
     <button
       onClick={() => handleChangeLanguage(currentLocale === 'es' ? 'en' : 'es')}
       className={`relative inline-flex cursor-pointer items-center rounded-full p-1 transition-colors lg:ml-4 ${
-        isCompanyOrBlog
-          ? 'bg-gray-100 hover:bg-gray-200'
+        useCompanyStyles
+          ? 'bg-white/10 hover:bg-white/20'
           : 'bg-white/10 hover:bg-white/20'
       }`}
       aria-label={`Cambiar a ${currentLocale === 'es' ? 'inglés' : 'español'}`}
@@ -33,7 +33,7 @@ function LanguageToggle({ isCompanyOrBlog }) {
       {/* Fondo deslizante */}
       <span
         className={`absolute top-1 bottom-1 left-1 w-[2.75rem] rounded-full transition-transform duration-300 ease-in-out ${
-          isCompanyOrBlog ? 'bg-white shadow-sm' : 'bg-white/20'
+          useCompanyStyles ? 'bg-white/20 shadow-sm' : 'bg-white/20'
         } ${currentLocale === 'en' ? 'translate-x-[2.75rem]' : 'translate-x-0'}`}
       />
 
@@ -41,11 +41,11 @@ function LanguageToggle({ isCompanyOrBlog }) {
       <span
         className={`relative z-10 flex w-[2.75rem] items-center justify-center py-1.5 text-sm font-semibold transition-colors ${
           currentLocale === 'es'
-            ? isCompanyOrBlog
-              ? 'text-gray-950'
+            ? useCompanyStyles
+              ? 'text-white'
               : 'text-white'
-            : isCompanyOrBlog
-              ? 'text-gray-500'
+            : useCompanyStyles
+              ? 'text-white/50'
               : 'text-white/50'
         }`}
       >
@@ -56,11 +56,11 @@ function LanguageToggle({ isCompanyOrBlog }) {
       <span
         className={`relative z-10 flex w-[2.75rem] items-center justify-center py-1.5 text-sm font-semibold transition-colors ${
           currentLocale === 'en'
-            ? isCompanyOrBlog
-              ? 'text-gray-950'
+            ? useCompanyStyles
+              ? 'text-white'
               : 'text-white'
-            : isCompanyOrBlog
-              ? 'text-gray-500'
+            : useCompanyStyles
+              ? 'text-white/50'
               : 'text-white/50'
         }`}
       >
@@ -83,33 +83,33 @@ function getTranslatedLinks() {
   ]
 }
 
-function DesktopNav({ isCompanyOrBlog }) {
+function DesktopNav({ useCompanyStyles, gridColor, isCompanyOrBlog }) {
   const translatedLinks = getTranslatedLinks()
 
   return (
     <nav className="relative hidden items-center lg:flex">
       {translatedLinks.map(({ href, label }) => (
-        <PlusGridItem key={href} className="relative flex">
+        <PlusGridItem key={href} className="relative flex" color={gridColor}>
           <Link
             href={href}
             className={`flex items-center px-4 py-3 text-base font-medium ${
-              isCompanyOrBlog ? 'text-gray-950' : 'text-white'
+              isCompanyOrBlog ? 'text-white' : (useCompanyStyles ? 'text-gray-950' : 'text-white')
             } bg-blend-multiply data-hover:bg-white/[2.5%]`}
           >
             {label}
           </Link>
         </PlusGridItem>
       ))}
-      <LanguageToggle isCompanyOrBlog={isCompanyOrBlog} />
+      <LanguageToggle useCompanyStyles={useCompanyStyles} />
     </nav>
   )
 }
 
-function MobileNavButton({ isCompanyOrBlog }) {
+function MobileNavButton({ useCompanyStyles }) {
   return (
     <DisclosureButton
       className={`flex size-12 items-center justify-center self-center rounded-lg lg:hidden ${
-        isCompanyOrBlog
+        useCompanyStyles
           ? 'text-gray-950 hover:bg-gray-100'
           : 'text-white hover:bg-white/10'
       }`}
@@ -120,7 +120,7 @@ function MobileNavButton({ isCompanyOrBlog }) {
   )
 }
 
-function MobileNav({ isCompanyOrBlog }) {
+function MobileNav({ useCompanyStyles, isCompanyOrBlog }) {
   const translatedLinks = getTranslatedLinks()
 
   return (
@@ -140,7 +140,7 @@ function MobileNav({ isCompanyOrBlog }) {
             <Link
               href={href}
               className={`text-base font-medium ${
-                isCompanyOrBlog ? 'text-gray-950' : 'text-white'
+                isCompanyOrBlog ? 'text-white' : (useCompanyStyles ? 'text-gray-950' : 'text-white')
               }`}
             >
               {label}
@@ -156,7 +156,7 @@ function MobileNav({ isCompanyOrBlog }) {
             rotateX: { duration: 0.3, delay: translatedLinks.length * 0.1 },
           }}
         >
-          <LanguageToggle isCompanyOrBlog={isCompanyOrBlog} />
+          <LanguageToggle useCompanyStyles={useCompanyStyles} />
         </motion.div>
       </div>
       <div className="absolute left-1/2 w-screen -translate-x-1/2">
@@ -174,7 +174,6 @@ export function Navbar({ banner }) {
     pathname === '/blog' ||
     pathname?.startsWith('/blog/') ||
     pathname === '/contact'
-  const gridColor = isCompanyOrBlog ? 'black' : 'white'
   const { language } = useLanguage()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isClient, setIsClient] = useState(false)
@@ -197,6 +196,20 @@ export function Navbar({ banner }) {
     }
   }, [])
 
+  // Determinar el color de la grid y el estilo según el estado de scroll
+  // Para company/blog/contact: sin scroll = negro, con scroll = blanco
+  // Para home: siempre blanco
+  const gridColor = isCompanyOrBlog
+    ? isScrolled
+      ? 'white'
+      : 'black'
+    : 'white'
+  
+  // Determinar si usar estilos de company/blog (negro) o home (blanco)
+  // Nota: El texto siempre será blanco en contact/company/blog, useCompanyStyles solo afecta otros elementos
+  const useCompanyStyles = isCompanyOrBlog && !isScrolled
+  const isHome = pathname === '/'
+
   return (
     <AnimatePresence>
       <motion.div
@@ -205,14 +218,16 @@ export function Navbar({ banner }) {
         transition={{ duration: 0.5, delay: 1 }}
         className={`${
           isClient && isScrolled
-            ? `fixed top-0 right-0 left-0 z-50 backdrop-blur-sm transition-all duration-300 ${
-                isCompanyOrBlog ? 'bg-white/80' : 'bg-gray-900/70'
+            ? `fixed top-0 right-0 left-0 z-50 backdrop-blur-sm ${
+                pathname === '/' ? 'transition-all duration-300' : ''
+              } ${
+                isCompanyOrBlog ? 'bg-gray-900/70' : 'bg-gray-900/70'
               }`
             : ''
         }`}
       >
         <div
-          className={`${isClient && isScrolled ? 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8' : ''}`}
+          className={`${isClient && isScrolled ? 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-0' : ''}`}
         >
           <Disclosure
             as="header"
@@ -222,9 +237,17 @@ export function Navbar({ banner }) {
               <PlusGridRow
                 className="relative flex justify-between"
                 color={gridColor}
+                showBackdrop={
+                  pathname === '/' 
+                    ? false 
+                    : isCompanyOrBlog 
+                      ? !isScrolled 
+                      : true
+                }
+                isHome={isHome}
               >
                 <div className="relative flex gap-6">
-                  <PlusGridItem className="py-3">
+                  <PlusGridItem className="py-3" color={gridColor}>
                     <Link
                       href="/"
                       title={getTranslation('navigation.home', language)}
@@ -233,8 +256,10 @@ export function Navbar({ banner }) {
                         className="h-10"
                         textClassName={
                           isCompanyOrBlog
-                            ? 'text-gray-950'
-                            : 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
+                            ? 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
+                            : useCompanyStyles
+                              ? 'text-gray-950'
+                              : 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
                         }
                       />
                     </Link>
@@ -245,11 +270,11 @@ export function Navbar({ banner }) {
                     </div>
                   )}
                 </div>
-                <DesktopNav isCompanyOrBlog={isCompanyOrBlog} />
-                <MobileNavButton isCompanyOrBlog={isCompanyOrBlog} />
+                <DesktopNav useCompanyStyles={useCompanyStyles} gridColor={gridColor} isCompanyOrBlog={isCompanyOrBlog} />
+                <MobileNavButton useCompanyStyles={useCompanyStyles} />
               </PlusGridRow>
             </PlusGrid>
-            <MobileNav isCompanyOrBlog={isCompanyOrBlog} />
+            <MobileNav useCompanyStyles={useCompanyStyles} isCompanyOrBlog={isCompanyOrBlog} />
           </Disclosure>
         </div>
       </motion.div>

@@ -1,3 +1,5 @@
+'use client'
+
 import { AnimatedNumber } from '@/components/animated-number'
 import { Button } from '@/components/button'
 import { Container } from '@/components/container'
@@ -5,12 +7,8 @@ import { Footer } from '@/components/footer'
 import { GradientBackground } from '@/components/gradient'
 import { Navbar } from '@/components/navbar'
 import { Heading, Lead, Subheading } from '@/components/text'
-
-export const metadata = {
-  title: 'Company',
-  description:
-    'We’re on a mission to transform revenue organizations by harnessing vast amounts of illegally acquired customer data.',
-}
+import Lenis from 'lenis'
+import { useEffect, useState } from 'react'
 
 function Header() {
   return (
@@ -448,17 +446,73 @@ function Careers() {
 }
 
 export default function Company() {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [navbarHeight, setNavbarHeight] = useState(0)
+
+  // Inicializar Lenis para smooth scroll
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
+
+  // Detectar cuando la navbar se vuelve fixed y obtener su altura
+  useEffect(() => {
+    const navbar = document.querySelector('header')
+    if (navbar) {
+      setNavbarHeight(navbar.offsetHeight)
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <main className="overflow-hidden">
       <GradientBackground />
-      <Container>
-        <Navbar />
-      </Container>
-      <Header />
-      <Team />
-      <Investors />
-      <Careers />
-      <Footer />
+      <div className="relative">
+        {isScrolled && (
+          <div style={{ height: `${navbarHeight}px` }} className="w-full"></div>
+        )}
+        <Container>
+          <Navbar />
+        </Container>
+        <Header />
+        <Team />
+        <Investors />
+        <Careers />
+        <Footer />
+      </div>
     </main>
   )
 }
