@@ -69,7 +69,7 @@ export function AnimatedHeading({
       data-dark={dark ? 'true' : undefined}
       className={clsx(
         className,
-        'text-4xl font-medium tracking-tighter text-pretty text-gray-950 data-dark:text-white sm:text-6xl',
+        'text-4xl font-medium tracking-tighter text-pretty text-gray-950 data-dark:text-white lg:text-6xl',
       )}
       {...props}
     >
@@ -104,7 +104,7 @@ export function Subheading({
       data-dark={dark ? 'true' : undefined}
       className={clsx(
         className,
-        'font-mono text-xs/5 font-semibold tracking-widest text-gray-500 uppercase data-dark:text-gray-400',
+        'font-mono text-xl/5 font-semibold tracking-widest text-gray-500 uppercase data-dark:text-gray-400',
       )}
     />
   )

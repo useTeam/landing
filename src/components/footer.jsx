@@ -158,7 +158,7 @@ export function Footer() {
   const { language } = useLanguage()
   return (
     <footer>
-      <div className="relative m-12">
+      <div className="relative px-4 py-4 lg:px-8 lg:py-12">
         <Gradient className="relative mb-2 rounded-4xl ring-1 ring-black/5 ring-inset">
           <Container>
             <div className="relative mb-12 border-b border-gray-200/40 py-24 text-center">
@@ -181,7 +181,7 @@ export function Footer() {
             </div>
 
             <PlusGrid className="pb-16">
-              <PlusGridRow>
+              <PlusGridRow showBackdrop={false}>
                 <div className="grid grid-cols-2 gap-y-10 pb-6 lg:grid-cols-6 lg:gap-8">
                   <div className="col-span-2 flex items-start justify-start">
                     <PlusGridItem className="pt-6 lg:pb-6">
@@ -193,7 +193,7 @@ export function Footer() {
                   </div>
                 </div>
               </PlusGridRow>
-              <PlusGridRow className="flex justify-between">
+              <PlusGridRow showBackdrop={false} className="flex justify-between ">
                 <div>
                   <PlusGridItem className="py-3">
                     <Copyright />
