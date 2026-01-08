@@ -105,14 +105,14 @@ function DesktopNav({ useCompanyStyles, gridColor, isCompanyOrBlog }) {
   )
 }
 
-function MobileNavButton({ useCompanyStyles }) {
+function MobileNavButton({ useCompanyStyles, isScrolled }) {
   return (
     <DisclosureButton
     className={`flex size-12 items-center justify-end self-center rounded-lg lg:hidden ${
       useCompanyStyles
-        ? 'text-gray-950 hover:bg-gray-100'
+        ? 'text-white hover:bg-gray-100'
         : 'text-white hover:bg-white/10'
-    }`}
+    } ${isScrolled ? "" : "absolute top-4 right-4"}`}
       aria-label="Open main menu"
     >
       <Bars3BottomRightIcon className="size-8" />
@@ -120,11 +120,27 @@ function MobileNavButton({ useCompanyStyles }) {
   )
 }
 
-function MobileNav({ useCompanyStyles, isCompanyOrBlog }) {
+function MobileNav({ useCompanyStyles, isCompanyOrBlog, isScrolled, isHome }) {
   const translatedLinks = getTranslatedLinks()
 
   return (
-    <DisclosurePanel className="lg:hidden">
+    <DisclosurePanel className={isScrolled ? "lg:hidden absolute backdrop-blur-md bg-gray-900/70 z-20  w-[101.5%] left-[-4px] pl-5 navbar-fade-left transition-all" : `${isHome ? "lg:hidden absolute bg-[#001933] z-20 h-full w-[100vw] top-0 left-[-16px] px-4 py-4 navbar-fade-left transition-all" : "lg:hidden absolute backdrop-blur-md bg-gray-900/70 z-20  w-[101.5%] left-[-4px] pl-5 navbar-fade-left transition-all"}`}>
+      {!isScrolled && isHome && (
+        <>
+        <MobileNavButton useCompanyStyles={useCompanyStyles} isScrolled={isScrolled}  />
+        <Logo
+        className="h-10"
+        textClassName={
+          isCompanyOrBlog
+          ? 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
+          : useCompanyStyles
+          ? 'text-gray-950'
+          : 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
+        }
+        />
+      <div className='w-full h-[1px] bg-white my-4'/>
+        </>
+      )}
       <div className="flex flex-col gap-6 py-4">
         {translatedLinks.map(({ href, label }, linkIndex) => (
           <motion.div
@@ -221,7 +237,7 @@ export function Navbar({ banner }) {
             ? `fixed top-0 right-0 left-0 z-50 backdrop-blur-sm ${
                 pathname === '/' ? 'transition-all duration-300' : ''
               } ${
-                isCompanyOrBlog ? 'bg-gray-900/70' : 'bg-gray-900/70'
+                isCompanyOrBlog ? 'bg-gray-900/70 ' : 'bg-gray-900/70 '
               }`
             : ''
         }`}
@@ -274,7 +290,7 @@ export function Navbar({ banner }) {
                 <MobileNavButton useCompanyStyles={useCompanyStyles} />
               </PlusGridRow>
             </PlusGrid>
-            <MobileNav useCompanyStyles={useCompanyStyles} isCompanyOrBlog={isCompanyOrBlog} />
+            <MobileNav useCompanyStyles={useCompanyStyles} isCompanyOrBlog={isCompanyOrBlog} isScrolled={isScrolled} isHome={isHome} />
           </Disclosure>
         </div>
       </motion.div>

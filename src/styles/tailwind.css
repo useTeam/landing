@@ -210,6 +210,17 @@
     transform: translateY(0px);
   }
 }
+@keyframes fade-inLeft-Navbar {
+  
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
 
 .animacionInferior {
   animation: fade-inBottom 2s ease-in-out;
@@ -232,4 +243,8 @@
 }
 .about-image {
   @apply absolute top-0 left-1/2 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[44vw];
+}
+
+.navbar-fade-left{
+  animation: fade-inLeft-Navbar .5s ease-in-out;
 }
