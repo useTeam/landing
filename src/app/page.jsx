@@ -182,7 +182,7 @@ function Hero() {
   }, [])
 
   return (
-    <div className="relative px-4">
+    <div className="relative px-4 overflow-hidden">
       {isScrolled && (
         <div style={{ height: `${navbarHeight}px` }} className="w-full"></div>
       )}
