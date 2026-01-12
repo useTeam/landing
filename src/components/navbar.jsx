@@ -1,13 +1,12 @@
 'use client'
-
 import useLanguageChanger from '@/hooks/useLanguageChanger'
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react'
-import { Bars3BottomRightIcon } from '@heroicons/react/24/solid'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Menu } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -91,7 +90,11 @@ function DesktopNav({ useCompanyStyles, gridColor, isCompanyOrBlog }) {
           <Link
             href={href}
             className={`flex items-center px-4 py-3 text-base font-medium ${
-              isCompanyOrBlog ? 'text-white' : (useCompanyStyles ? 'text-gray-950' : 'text-white')
+              isCompanyOrBlog
+                ? 'text-white'
+                : useCompanyStyles
+                  ? 'text-gray-950'
+                  : 'text-white'
             } bg-blend-multiply data-hover:bg-white/[2.5%]`}
           >
             {label}
@@ -106,14 +109,14 @@ function DesktopNav({ useCompanyStyles, gridColor, isCompanyOrBlog }) {
 function MobileNavButton({ useCompanyStyles, isScrolled }) {
   return (
     <DisclosureButton
-    className={`flex size-12 items-center justify-end self-center rounded-lg lg:hidden ${
-      useCompanyStyles
-        ? 'text-white hover:bg-gray-100'
-        : 'text-white hover:bg-white/10'
-    } ${isScrolled ? "" : "absolute top-4 right-4"}`}
+      className={`flex size-12 items-center justify-end self-center rounded-lg lg:hidden ${
+        useCompanyStyles
+          ? 'text-white hover:bg-gray-100'
+          : 'text-white hover:bg-white/10'
+      } ${isScrolled ? '' : 'absolute top-4 right-4'}`}
       aria-label="Open main menu"
     >
-      <Bars3BottomRightIcon className="size-8" />
+      <Menu className="size-8" />
     </DisclosureButton>
   )
 }
@@ -122,21 +125,30 @@ function MobileNav({ useCompanyStyles, isCompanyOrBlog, isScrolled, isHome }) {
   const translatedLinks = getTranslatedLinks()
 
   return (
-    <DisclosurePanel className={isScrolled ? "lg:hidden absolute backdrop-blur-md bg-gray-900/70 z-20  w-[101.5%] left-[-4px] pl-5 navbar-fade-left transition-all" : `${isHome ? "lg:hidden absolute bg-[#001933] z-20 h-full w-[100vw] top-0 left-[-16px] px-4 py-4 navbar-fade-left transition-all" : "lg:hidden absolute backdrop-blur-md bg-gray-900/70 z-20  w-[101.5%] left-[-4px] pl-5 navbar-fade-left transition-all"}`}>
+    <DisclosurePanel
+      className={
+        isScrolled
+          ? 'navbar-fade-left absolute left-[-4px] z-20 w-[101.5%] bg-gray-900/70 pl-5 backdrop-blur-md transition-all lg:hidden'
+          : `${isHome ? 'navbar-fade-left absolute top-0 left-[-16px] z-20 h-full w-[100vw] bg-[#001933] px-4 py-4 transition-all lg:hidden' : 'navbar-fade-left absolute left-[-4px] z-20 w-[101.5%] bg-gray-900/70 pl-5 backdrop-blur-md transition-all lg:hidden'}`
+      }
+    >
       {!isScrolled && isHome && (
         <>
-        <MobileNavButton useCompanyStyles={useCompanyStyles} isScrolled={isScrolled}  />
-        <Logo
-        className="h-10"
-        textClassName={
-          isCompanyOrBlog
-          ? 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
-          : useCompanyStyles
-          ? 'text-gray-950'
-          : 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
-        }
-        />
-      <div className='w-full h-[1px] bg-white my-4'/>
+          <MobileNavButton
+            useCompanyStyles={useCompanyStyles}
+            isScrolled={isScrolled}
+          />
+          <Logo
+            className="h-10"
+            textClassName={
+              isCompanyOrBlog
+                ? 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
+                : useCompanyStyles
+                  ? 'text-gray-950'
+                  : 'text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]'
+            }
+          />
+          <div className="my-4 h-[1px] w-full bg-white" />
         </>
       )}
       <div className="flex flex-col gap-6 py-4">
@@ -154,7 +166,11 @@ function MobileNav({ useCompanyStyles, isCompanyOrBlog, isScrolled, isHome }) {
             <Link
               href={href}
               className={`text-base font-medium ${
-                isCompanyOrBlog ? 'text-white' : (useCompanyStyles ? 'text-gray-950' : 'text-white')
+                isCompanyOrBlog
+                  ? 'text-white'
+                  : useCompanyStyles
+                    ? 'text-gray-950'
+                    : 'text-white'
               }`}
             >
               {label}
@@ -212,12 +228,8 @@ export function Navbar({ banner }) {
   // Determinar el color de la grid y el estilo según el estado de scroll
   // Para company/blog/contact: sin scroll = negro, con scroll = blanco
   // Para home: siempre blanco
-  const gridColor = isCompanyOrBlog
-    ? isScrolled
-      ? 'white'
-      : 'black'
-    : 'white'
-  
+  const gridColor = isCompanyOrBlog ? (isScrolled ? 'white' : 'black') : 'white'
+
   // Determinar si usar estilos de company/blog (negro) o home (blanco)
   // Nota: El texto siempre será blanco en contact/company/blog, useCompanyStyles solo afecta otros elementos
   const useCompanyStyles = isCompanyOrBlog && !isScrolled
@@ -233,9 +245,7 @@ export function Navbar({ banner }) {
           isClient && isScrolled
             ? `fixed top-0 right-0 left-0 z-50 backdrop-blur-sm ${
                 pathname === '/' ? 'transition-all duration-300' : ''
-              } ${
-                isCompanyOrBlog ? 'bg-gray-900/70 ' : 'bg-gray-900/70 '
-              }`
+              } ${isCompanyOrBlog ? 'bg-gray-900/70' : 'bg-gray-900/70'}`
             : ''
         }`}
       >
@@ -251,20 +261,17 @@ export function Navbar({ banner }) {
                 className="relative flex justify-between"
                 color={gridColor}
                 showBackdrop={
-                  pathname === '/' 
-                    ? false 
-                    : isCompanyOrBlog 
-                      ? !isScrolled 
+                  pathname === '/'
+                    ? false
+                    : isCompanyOrBlog
+                      ? !isScrolled
                       : true
                 }
                 isHome={isHome}
               >
                 <div className="relative flex gap-6">
                   <PlusGridItem className="py-3" color={gridColor}>
-                    <Link
-                      href="/"
-                      title="Home"
-                    >
+                    <Link href="/" title="Home">
                       <Logo
                         className="h-10"
                         textClassName={
@@ -283,11 +290,20 @@ export function Navbar({ banner }) {
                     </div>
                   )}
                 </div>
-                <DesktopNav useCompanyStyles={useCompanyStyles} gridColor={gridColor} isCompanyOrBlog={isCompanyOrBlog} />
+                <DesktopNav
+                  useCompanyStyles={useCompanyStyles}
+                  gridColor={gridColor}
+                  isCompanyOrBlog={isCompanyOrBlog}
+                />
                 <MobileNavButton useCompanyStyles={useCompanyStyles} />
               </PlusGridRow>
             </PlusGrid>
-            <MobileNav useCompanyStyles={useCompanyStyles} isCompanyOrBlog={isCompanyOrBlog} isScrolled={isScrolled} isHome={isHome} />
+            <MobileNav
+              useCompanyStyles={useCompanyStyles}
+              isCompanyOrBlog={isCompanyOrBlog}
+              isScrolled={isScrolled}
+              isHome={isHome}
+            />
           </Disclosure>
         </div>
       </motion.div>

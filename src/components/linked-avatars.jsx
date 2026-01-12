@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckIcon } from '@heroicons/react/16/solid'
+import { Check } from 'lucide-react'
 import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 
@@ -59,7 +59,7 @@ function Checkmark() {
         }}
         className="flex size-6 items-center justify-center rounded-full bg-linear-to-t from-green-500 to-green-300 shadow-sm"
       >
-        <CheckIcon className="size-4 fill-white" />
+        <Check className="size-4 fill-white" />
       </motion.div>
     </div>
   )

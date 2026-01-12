@@ -1,7 +1,7 @@
 import { Link } from '@/components/link'
 import { useTranslation } from 'react-i18next'
 import { useGSAP } from '@gsap/react'
-import { ChevronRightIcon } from '@heroicons/react/16/solid'
+import { ChevronRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useEffect, useRef, useState } from 'react'
@@ -145,7 +145,7 @@ const Hero = () => {
             className="flex items-center gap-1 rounded-full bg-fuchsia-950/35 px-3 py-0.5 text-sm/6 font-medium text-white data-hover:bg-fuchsia-950/30"
           >
             {t('hero2_banner')}
-            <ChevronRightIcon className="size-4" />
+            <ChevronRight className="size-4" />
           </Link>
         }
       />

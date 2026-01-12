@@ -1,10 +1,10 @@
-import { TagIcon } from '@heroicons/react/16/solid'
+import { Tag } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
 
 export const categoryType = defineType({
   name: 'category',
   type: 'document',
-  icon: TagIcon,
+  icon: Tag,
   fields: [
     defineField({
       name: 'title',

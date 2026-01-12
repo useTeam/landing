@@ -17,15 +17,15 @@ import { Map } from '@/components/map'
 import { Navbar } from '@/components/navbar'
 import { Screenshot } from '@/components/screenshot'
 import { AnimatedHeading, Subheading } from '@/components/text'
-import { useTranslation } from 'react-i18next'
-import { ChevronRightIcon, UserIcon } from '@heroicons/react/16/solid'
-import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
+import { ChevronRight } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import Lenis from 'lenis'
+import { Blocks, Heart, SparklesIcon, TrendingUp, Zap } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function CoreStudioCard({
-  eyebrow,
+  icon,
   title,
   description,
   delay = 0,
@@ -54,34 +54,13 @@ function CoreStudioCard({
       animate={isInView ? 'visible' : 'hidden'}
       variants={directions[direction]}
       transition={{ duration: 0.6, delay, ease: 'easeOut' }}
-      className={`group relative flex flex-col justify-between rounded-2xl bg-gradient-to-br from-[#00C6FF]/90 to-[#007BFF]/90 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#00C6FF]/20 ${sizeClasses[size]}`}
+      className={`group relative flex flex-col justify-between rounded-3xl border border-[#ffffff28] bg-gradient-to-br backdrop-blur-sm transition-all duration-300 ${sizeClasses[size]}`}
     >
-      {/* Eyebrow */}
-      <div className="mb-4">
-        <span className="inline-block rounded-full bg-black/20 px-3 py-1 text-xs font-semibold tracking-wider text-white/90 uppercase">
-          {eyebrow}
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1">
-        <h3 className="mb-3 font-bold text-2xl text-white transition-colors">
-          {title}
-        </h3>
-        {description && (
-          <p className="text-sm leading-relaxed text-white/80">{description}</p>
-        )}
-      </div>
-
-      {/* Arrow Icon */}
-      <div className="mt-6 flex items-center justify-between">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-black/30">
-          <ArrowUpRightIcon className="h-5 w-5 text-white" />
-        </div>
-      </div>
-
-      {/* Hover effect overlay */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/0 to-white/0 opacity-0 transition-opacity duration-300 group-hover:from-white/5 group-hover:to-white/10 group-hover:opacity-100" />
+      <GridItem
+        icon={icon}
+        title={title}
+        description={description}
+      />
     </motion.div>
   )
 }
@@ -89,16 +68,14 @@ function CoreStudioCard({
 function CoreStudiosSection() {
   const titleRef = useRef(null)
   const isTitleInView = useInView(titleRef, { once: true, amount: 0.5 })
-  const { t } = useTranslation('Home')
+  const { t } = useTranslation(['Home'])
 
   return (
     <div className="relative overflow-hidden bg-black py-24 sm:py-32">
       <Container>
-        <div className="relative ">
+        <div className="relative">
           {/* Title Section */}
-          <Subheading>
-            {t('feature_subheading')}
-          </Subheading>
+          <Subheading>{t('feature_subheading')}</Subheading>
 
           <AnimatedHeading
             as="h2"
@@ -110,40 +87,55 @@ function CoreStudiosSection() {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <CoreStudioCard
-              eyebrow="DATA AND AI"
-              title="La IA ya está transformando a muchas empresas. ¿Estás aprovechando su potencial?"
+              icon={
+                <SparklesIcon className="h-4 w-4 hover: text-black dark:text-neutral-400" />
+              }
+              title={t('core_card_title_1')}
+              description={t('core_card_description_1')}
               size="large"
               direction="left"
               delay={0.1}
             />
 
             <CoreStudioCard
-              eyebrow="BUSINESS HACKING"
-              title="¿Cuál es tu próxima fuente de ingresos?"
+              icon={
+                <TrendingUp className="h-4 w-4 text-black dark:text-neutral-400" />
+              }
+              title={t('core_card_title_2')}
+              description={t('core_card_description_2')}
               size="medium"
               direction="right"
               delay={0.2}
             />
 
             <CoreStudioCard
-              eyebrow="PROCESS OPTIMIZATION"
-              title="Eficiencia liderada por la tecnología."
+              icon={
+                <Zap className="h-4 w-4 text-black dark:text-neutral-400" />
+              }
+              title={t('core_card_title_3')}
+              description={t('core_card_description_3')}
               size="medium"
               direction="left"
               delay={0.3}
             />
 
             <CoreStudioCard
-              eyebrow="FAST CODE"
-              title="Superapps y low code: ¿Cómo transformarán el futuro?"
+              icon={
+                <Blocks className="h-4 w-4 text-black dark:text-neutral-400" />
+              }
+              title={t('core_card_title_4')}
+              description={t('core_card_description_4')}
               size="medium"
               direction="up"
               delay={0.4}
             />
 
             <CoreStudioCard
-              eyebrow="CONNECTED EXPERIENCES"
-              title="Deleita a tus clientes para crear fans para toda la vida"
+              icon={
+                <Heart className="h-4 w-4 text-black dark:text-neutral-400" />
+              }
+              title={t('core_card_title_5')}
+              description={t('core_card_description_5')}
               size="medium"
               direction="right"
               delay={0.5}
@@ -182,7 +174,7 @@ function Hero() {
   }, [])
 
   return (
-    <div className="relative px-4 overflow-hidden">
+    <div className="relative overflow-hidden px-4">
       {isScrolled && (
         <div style={{ height: `${navbarHeight}px` }} className="w-full"></div>
       )}
@@ -195,12 +187,12 @@ function Hero() {
               className="flex items-center gap-1 rounded-full bg-fuchsia-950/35 px-3 py-0.5 text-sm/6 font-medium text-white data-hover:bg-fuchsia-950/30"
             >
               {t('hero_banner')}
-              <ChevronRightIcon className="size-4" />
+              <ChevronRight className="size-4" />
             </Link>
           }
         />
         <div className="relative pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-48">
-          <div className="relative flex w-full flex-col items-center justify-center gap-8 md:items-center lg:flex-row ">
+          <div className="relative flex w-full flex-col items-center justify-center gap-8 md:items-center lg:flex-row">
             <div className="w-full lg:w-1/2 xl:w-1/2">
               <h1 className="animacionInferiorTexto max-w-sm font-display text-5xl/[0.9] font-medium tracking-tight text-balance text-white sm:text-7xl/[0.8] md:text-8xl/[0.9] lg:text-6xl/[0.9] xl:text-8xl/[0.9]">
                 {t('hero_title')}
@@ -209,9 +201,7 @@ function Hero() {
                 {t('hero_description')}
               </p>
               <div className="animacionSuperiorTexto mt-8 flex flex-col gap-x-6 gap-y-4 sm:flex-row md:mb-0">
-                <Button href="/contact">
-                  {t('common_getStarted')}
-                </Button>
+                <Button href="/contact">{t('common_getStarted')}</Button>
               </div>
             </div>
 
@@ -319,9 +309,7 @@ function DarkBentoSection() {
   return (
     <div className="mt-2 bg-black py-32">
       <Container>
-        <Subheading dark>
-          {t('darkBento_outreach')}
-        </Subheading>
+        <Subheading dark>{t('darkBento_outreach')}</Subheading>
         <AnimatedHeading as="h3" dark className="mt-2 max-w-7xl">
           {t('darkBento_heading')}
         </AnimatedHeading>
@@ -379,7 +367,7 @@ function DarkBentoSection() {
   )
 }
 
-function GridItem ({ area, icon, title, description }) {
+function GridItem({ area, icon, title, description }) {
   return (
     <li className={`min-h-[14rem] list-none ${area}`}>
       <div className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3">
@@ -398,7 +386,7 @@ function GridItem ({ area, icon, title, description }) {
               {icon}
             </div>
             <div className="space-y-3">
-              <h3 className="-tracking-4 pt-0.5 font-sans text-xl/[1.375rem] font-semibold text-balance text-black md:text-2xl/[1.875rem] dark:text-white">
+              <h3 className="-tracking-4 pt-0.5 font-sans text-xl/[1.375rem] font-semibold text-balance text-white md:text-2xl/[1.875rem] dark:text-white">
                 {title}
               </h3>
               <h2 className="font-sans text-sm/[1.125rem] text-black md:text-base/[1.375rem] dark:text-neutral-400 [&_b]:md:font-semibold [&_strong]:md:font-semibold">
@@ -409,8 +397,8 @@ function GridItem ({ area, icon, title, description }) {
         </div>
       </div>
     </li>
-  );
-};
+  )
+}
 
 export default function Home() {
   // Inicializar Lenis para smooth scroll
@@ -441,7 +429,7 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
-      <Hero />
+      <Hero/>
       <main>
         <LogoCarousel />
         <div className="bg-linear-to-b from-white from-50% to-gray-100 py-4 lg:py-32">
@@ -452,44 +440,6 @@ export default function Home() {
       {/* <Testimonials /> */}
       <CoreStudiosSection />
 
-      <div className='bg-black'>
-        <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
-          <GridItem
-            area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
-            icon={<UserIcon className="h-4 w-4 text-black dark:text-neutral-400" />}
-            title="Do things the right way"
-            description="Running out of copy so I'll write anything."
-          />
-    
-          <GridItem
-            area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
-            icon={<UserIcon className="h-4 w-4 text-black dark:text-neutral-400" />}
-            title="The best AI code editor ever."
-            description="Yes, it's true. I'm not even kidding. Ask my mom if you don't believe me."
-          />
-    
-          <GridItem
-            area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
-            icon={<UserIcon className="h-4 w-4 text-black dark:text-neutral-400" />}
-            title="You should buy Aceternity UI Pro"
-            description="It's the best money you'll ever spend"
-          />
-    
-          <GridItem
-            area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
-            icon={<UserIcon className="h-4 w-4 text-black dark:text-neutral-400" />}
-            title="This card is also built by Cursor"
-            description="I'm not even kidding. Ask my mom if you don't believe me."
-          />
-    
-          <GridItem
-            area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
-            icon={<UserIcon className="h-4 w-4 text-black dark:text-neutral-400" />}
-            title="Coming soon on Aceternity UI"
-            description="I'm writing the code as I record this, no shit."
-          />
-        </ul>
-      </div>
       <Footer />
     </div>
   )

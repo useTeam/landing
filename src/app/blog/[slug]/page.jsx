@@ -7,7 +7,8 @@ import { Navbar } from '@/components/navbar'
 import { Heading, Subheading } from '@/components/text'
 import { image } from '@/sanity/image'
 import { getPost } from '@/sanity/queries'
-import { ChevronLeftIcon } from '@heroicons/react/16/solid'
+
+import { ChevronLeft } from 'lucide-react'
 import dayjs from 'dayjs'
 import { PortableText } from 'next-sanity'
 import { notFound } from 'next/navigation'
@@ -177,7 +178,7 @@ export default async function BlogPost({ params }) {
               )}
               <div className="mt-10">
                 <Button variant="outline" href="/blog">
-                  <ChevronLeftIcon className="size-4" />
+                  <ChevronLeft className="size-4" />
                   Back to blog
                 </Button>
               </div>

@@ -15,13 +15,7 @@ import {
   getPostsCount,
 } from '@/sanity/queries'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import {
-  CheckIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronUpDownIcon,
-  RssIcon,
-} from '@heroicons/react/16/solid'
+import { Check, ChevronLeft, ChevronRight, ChevronsUpDownIcon, Rss } from 'lucide-react'
 import { clsx } from 'clsx'
 import dayjs from 'dayjs'
 import Lenis from 'lenis'
@@ -106,7 +100,7 @@ function Categories({ selected, categories }) {
         <MenuButton className="flex items-center justify-between gap-2 font-medium">
           {categories.find(({ slug }) => slug === selected)?.title ||
             'All categories'}
-          <ChevronUpDownIcon className="size-4 fill-gray-900" />
+          <ChevronsUpDownIcon className="size-4 fill-gray-900" />
         </MenuButton>
         <MenuItems
           anchor="bottom start"
@@ -118,7 +112,7 @@ function Categories({ selected, categories }) {
               data-selected={selected === undefined ? true : undefined}
               className="group grid grid-cols-[1rem_1fr] items-center gap-2 rounded-md px-2 py-1 data-focus:bg-gray-950/5"
             >
-              <CheckIcon className="hidden size-4 group-data-selected:block" />
+              <Check className="hidden size-4 group-data-selected:block" />
               <p className="col-start-2 text-sm/6">All categories</p>
             </Link>
           </MenuItem>
@@ -129,7 +123,7 @@ function Categories({ selected, categories }) {
                 data-selected={category.slug === selected ? true : undefined}
                 className="group grid grid-cols-[16px_1fr] items-center gap-2 rounded-md px-2 py-1 data-focus:bg-gray-950/5"
               >
-                <CheckIcon className="hidden size-4 group-data-selected:block" />
+                <Check className="hidden size-4 group-data-selected:block" />
                 <p className="col-start-2 text-sm/6">{category.title}</p>
               </Link>
             </MenuItem>
@@ -137,7 +131,7 @@ function Categories({ selected, categories }) {
         </MenuItems>
       </Menu>
       <Button variant="outline" href="/blog/feed.xml" className="gap-1">
-        <RssIcon className="size-4" />
+        <Rss className="size-4" />
         RSS Feed
       </Button>
     </div>
@@ -185,7 +179,7 @@ function Posts({ posts }) {
               >
                 <span className="absolute inset-0" />
                 Read more
-                <ChevronRightIcon className="size-4 fill-gray-400" />
+                <ChevronRight className="size-4 fill-gray-400" />
               </Link>
             </div>
           </div>
@@ -222,7 +216,7 @@ function Pagination({ page, category, totalPosts }) {
         href={previousPageUrl}
         disabled={!previousPageUrl}
       >
-        <ChevronLeftIcon className="size-4" />
+        <ChevronLeft className="size-4" />
         Previous
       </Button>
       <div className="flex gap-2 max-sm:hidden">
@@ -244,7 +238,7 @@ function Pagination({ page, category, totalPosts }) {
       </div>
       <Button variant="outline" href={nextPageUrl} disabled={!nextPageUrl}>
         Next
-        <ChevronRightIcon className="size-4" />
+        <ChevronRight className="size-4" />
       </Button>
     </div>
   )
