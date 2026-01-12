@@ -22,42 +22,42 @@ const testimonials = [
     name: 'Tina Yards',
     title: 'CTO, Protocol',
     quote:
-      'useTeam has transformed our development process, helping us deliver high-quality software faster than ever before.',
+      'UseTeam has transformed our development process, helping us deliver high-quality software faster than ever before.',
   },
   {
     img: '/testimonials/conor-neville.jpg',
     name: 'Conor Neville',
     title: 'Engineering Manager, TaxPal',
     quote:
-      "With useTeam, we've streamlined our development workflow and improved our team collaboration significantly.",
+      "With UseTeam, we've streamlined our development workflow and improved our team collaboration significantly.",
   },
   {
     img: '/testimonials/amy-chase.jpg',
     name: 'Amy Chase',
     title: 'Product Owner, Pocket',
     quote:
-      "useTeam's project management tools have helped us deliver complex software projects on time and within budget.",
+      "UseTeam's project management tools have helped us deliver complex software projects on time and within budget.",
   },
   {
     img: '/testimonials/veronica-winton.jpg',
     name: 'Veronica Winton',
     title: 'Tech Lead, Planeteria',
     quote:
-      "Our development team's productivity has increased by 40% since implementing useTeam in our workflow.",
+      "Our development team's productivity has increased by 40% since implementing UseTeam in our workflow.",
   },
   {
     img: '/testimonials/dillon-lenora.jpg',
     name: 'Dillon Lenora',
     title: 'DevOps Lead, Detax',
     quote:
-      'useTeam has revolutionized how we manage our software development lifecycle.',
+      'UseTeam has revolutionized how we manage our software development lifecycle.',
   },
   {
     img: '/testimonials/harriet-arron.jpg',
     name: 'Harriet Arron',
     title: 'Scrum Master, Commit',
     quote:
-      "Thanks to useTeam, we've been able to scale our development team while maintaining high code quality standards.",
+      "Thanks to UseTeam, we've been able to scale our development team while maintaining high code quality standards.",
   },
 ]
 

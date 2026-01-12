@@ -34,15 +34,15 @@ const translations = {
   hero: {
     title: {
       es: 'Soluciones inteligentes',
-      en: 'Smart solutions',
+      en: 'Smart Solutions',
     },
     description: {
       es: 'Creamos sistemas limpios y escalables que se adaptan a tu flujo de trabajo y generan resultados medibles.',
       en: 'Creates clean, scalable systems that adapt to your workflow and drive measurable results.',
     },
     banner: {
-      es: 'Nuevo hito: useTeam x Gravitad',
-      en: 'New Milestone: useTeam x Gravitad',
+      es: 'Nuevo hito: UseTeam x Gravitad',
+      en: 'New Milestone: UseTeam x Gravitad',
     },
   },
   // Hero2 section (nuevo hero con videos)
@@ -64,8 +64,8 @@ const translations = {
       en: 'Watch demo',
     },
     banner: {
-      es: 'Nuevo hito: useTeam x Gravitad',
-      en: 'New Milestone: useTeam x Gravitad',
+      es: 'Nuevo hito: UseTeam x Gravitad',
+      en: 'New Milestone: UseTeam x Gravitad',
     },
   },
   // Feature section
@@ -100,8 +100,8 @@ const translations = {
           en: 'Get perfect clarity',
         },
         description: {
-          es: 'useTeam aplica procesos inteligentes para crear software personalizado que se adapta a tu modelo de negocio, escala rápido y tiene mejor rendimiento.',
-          en: 'useTeam applies smart processes to craft custom software that fits your business model, scales fast, and performs better.',
+          es: 'UseTeam aplica procesos inteligentes para crear software personalizado que se adapta a tu modelo de negocio, escala rápido y tiene mejor rendimiento.',
+          en: 'UseTeam applies smart processes to craft custom software that fits your business model, scales fast, and performs better.',
         },
       },
       analysis: {
@@ -114,8 +114,8 @@ const translations = {
           en: 'Outsmart your competition',
         },
         description: {
-          es: 'useTeam analiza tendencias del mercado y comportamiento de la competencia para construir software que da ventaja a tu negocio.',
-          en: 'useTeam analyzes market trends and competitor behavior to build software that gives your business the upper hand.',
+          es: 'UseTeam analiza tendencias del mercado y comportamiento de la competencia para construir software que da ventaja a tu negocio.',
+          en: 'UseTeam analyzes market trends and competitor behavior to build software that gives your business the upper hand.',
         },
       },
       speed: {
@@ -128,8 +128,8 @@ const translations = {
           en: 'Built for visionaries',
         },
         description: {
-          es: 'Desde MVP hasta plataformas completas, useTeam te ayuda a construir software potente sin frenar tu impulso.',
-          en: 'From MVP to full-scale platform, useTeam helps you build powerful software without slowing down your momentum.',
+          es: 'Desde MVP hasta plataformas completas, UseTeam te ayuda a construir software potente sin frenar tu impulso.',
+          en: 'From MVP to full-scale platform, UseTeam helps you build powerful software without slowing down your momentum.',
         },
       },
       source: {
@@ -142,8 +142,8 @@ const translations = {
           en: 'Get the furthest reach',
         },
         description: {
-          es: 'useTeam construye herramientas basadas en datos que descubren nuevas oportunidades de mercado y te ayudan a conectar con los usuarios adecuados.',
-          en: 'useTeam builds data-driven tools that uncover new market opportunities and help you connect with the right users.',
+          es: 'UseTeam construye herramientas basadas en datos que descubren nuevas oportunidades de mercado y te ayudan a conectar con los usuarios adecuados.',
+          en: 'UseTeam builds data-driven tools that uncover new market opportunities and help you connect with the right users.',
         },
       },
       limitless: {
@@ -260,8 +260,8 @@ const translations = {
           en: 'CTO, Protocol',
         },
         quote: {
-          es: 'useTeam ha transformado nuestro proceso de desarrollo, ayudándonos a entregar software de alta calidad más rápido que nunca.',
-          en: 'useTeam has transformed our development process, helping us deliver high-quality software faster than ever before.',
+          es: 'UseTeam ha transformado nuestro proceso de desarrollo, ayudándonos a entregar software de alta calidad más rápido que nunca.',
+          en: 'UseTeam has transformed our development process, helping us deliver high-quality software faster than ever before.',
         },
       },
       {
@@ -272,8 +272,8 @@ const translations = {
           en: 'Engineering Manager, TaxPal',
         },
         quote: {
-          es: 'Con useTeam, hemos optimizado nuestro flujo de trabajo de desarrollo y mejorado significativamente la colaboración de nuestro equipo.',
-          en: "With useTeam, we've streamlined our development workflow and improved our team collaboration significantly.",
+          es: 'Con UseTeam, hemos optimizado nuestro flujo de trabajo de desarrollo y mejorado significativamente la colaboración de nuestro equipo.',
+          en: "With UseTeam, we've streamlined our development workflow and improved our team collaboration significantly.",
         },
       },
       {
@@ -284,8 +284,8 @@ const translations = {
           en: 'Product Owner, Pocket',
         },
         quote: {
-          es: 'Las herramientas de gestión de proyectos de useTeam nos han ayudado a entregar proyectos de software complejos a tiempo y dentro del presupuesto.',
-          en: "useTeam's project management tools have helped us deliver complex software projects on time and within budget.",
+          es: 'Las herramientas de gestión de proyectos de UseTeam nos han ayudado a entregar proyectos de software complejos a tiempo y dentro del presupuesto.',
+          en: "UseTeam's project management tools have helped us deliver complex software projects on time and within budget.",
         },
       },
       {
@@ -296,8 +296,8 @@ const translations = {
           en: 'Tech Lead, Planeteria',
         },
         quote: {
-          es: 'La productividad de nuestro equipo de desarrollo ha aumentado un 40% desde que implementamos useTeam en nuestro flujo de trabajo.',
-          en: "Our development team's productivity has increased by 40% since implementing useTeam in our workflow.",
+          es: 'La productividad de nuestro equipo de desarrollo ha aumentado un 40% desde que implementamos UseTeam en nuestro flujo de trabajo.',
+          en: "Our development team's productivity has increased by 40% since implementing UseTeam in our workflow.",
         },
       },
       {
@@ -308,8 +308,8 @@ const translations = {
           en: 'DevOps Lead, Detax',
         },
         quote: {
-          es: 'useTeam ha revolucionado la forma en que gestionamos nuestro ciclo de vida de desarrollo de software.',
-          en: 'useTeam has revolutionized how we manage our software development lifecycle.',
+          es: 'UseTeam ha revolucionado la forma en que gestionamos nuestro ciclo de vida de desarrollo de software.',
+          en: 'UseTeam has revolutionized how we manage our software development lifecycle.',
         },
       },
       {
@@ -320,8 +320,8 @@ const translations = {
           en: 'Scrum Master, Commit',
         },
         quote: {
-          es: 'Gracias a useTeam, hemos podido escalar nuestro equipo de desarrollo manteniendo altos estándares de calidad de código.',
-          en: "Thanks to useTeam, we've been able to scale our development team while maintaining high code quality standards.",
+          es: 'Gracias a UseTeam, hemos podido escalar nuestro equipo de desarrollo manteniendo altos estándares de calidad de código.',
+          en: "Thanks to UseTeam, we've been able to scale our development team while maintaining high code quality standards.",
         },
       },
     ],
@@ -386,8 +386,8 @@ const translations = {
   // Página de empresa
   company: {
     title: {
-      es: 'Acerca de useTeam',
-      en: 'About useTeam',
+      es: 'Acerca de UseTeam',
+      en: 'About UseTeam',
     },
     subtitle: {
       es: 'Construyendo el futuro del desarrollo de software',
@@ -399,8 +399,8 @@ const translations = {
         en: 'Our mission',
       },
       description: {
-        es: 'En useTeam, nos dedicamos a crear herramientas que permitan a los equipos de desarrollo crear software mejor y más rápido. Creemos en la potencia de la colaboración y la tecnología para resolver los problemas más complejos.',
-        en: "At useTeam, we're dedicated to creating tools that enable development teams to build better software, faster. We believe in the power of collaboration and technology to solve the most complex problems.",
+        es: 'En UseTeam, nos dedicamos a crear herramientas que permitan a los equipos de desarrollo crear software mejor y más rápido. Creemos en la potencia de la colaboración y la tecnología para resolver los problemas más complejos.',
+        en: "At UseTeam, we're dedicated to creating tools that enable development teams to build better software, faster. We believe in the power of collaboration and technology to solve the most complex problems.",
       },
     },
     team: {

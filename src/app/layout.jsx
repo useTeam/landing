@@ -10,8 +10,8 @@ import { ScrollToTop } from '../components/scroll-to-top'
 
 export const metadata = {
   title: {
-    template: '%s - useTeam',
-    default: 'useTeam - Smart solutions',
+    template: '%s - UseTeam',
+    default: 'UseTeam - Smart Solutions',
   },
   icons: {
     icon: [
@@ -57,7 +57,7 @@ export default async function RootLayout({ children }) {
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="The useTeam Blog"
+          title="The UseTeam Blog"
           href="/blog/feed.xml"
         />
         <link

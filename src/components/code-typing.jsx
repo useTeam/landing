@@ -115,7 +115,7 @@ export function CodeTyping() {
         <div className="h-2.5 w-2.5 rounded-full bg-green-500"></div>
         <span className="ml-2 text-xs text-gray-400">script.js</span>
         <div className="ml-auto text-xs text-gray-400 opacity-70">
-          useTeam IDE
+          UseTeam IDE
         </div>
       </div>
       <div className="flex h-[calc(100%_-_32px)] items-center justify-center">

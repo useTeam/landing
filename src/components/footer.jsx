@@ -149,7 +149,7 @@ function SocialLinks() {
 function Copyright() {
   return (
     <div className="text-sm/6 text-white">
-      &copy; {new Date().getFullYear()} useTeam
+      &copy; {new Date().getFullYear()} UseTeam
     </div>
   )
 }
