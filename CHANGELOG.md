@@ -14,6 +14,53 @@ Todos los cambios notables de este proyecto serán documentados en este archivo.
 
 ---
 
+## 2026-01-12
+
+### Agregado
+- ✅ **Componente GlowingEffect**
+  - Animación de borde interactiva que sigue el mouse
+  - Gradiente cónico con blur, spread y proximity configurables
+  - Integrado en sección de grid principal
+
+- ✅ **Utilidad cn() para clases Tailwind**
+  - Helper para merge de clases con clsx y tailwind-merge
+
+- ✅ **LenisProvider para smooth scroll global**
+  - Provider con Context API para scroll suave en toda la app
+  - Integrado en root layout
+
+- ✅ **Componente Loader**
+  - Spinner animado con texto personalizable
+  - Listo para estados de carga
+
+### Cambiado
+- 🔄 **Unificación completa del sistema i18n**
+  - Eliminación del language-context legacy
+  - Nuevos archivos de traducción para blog y company
+  - Estandarización de traducciones en toda la aplicación
+
+- 🔄 **Migración de iconos a lucide-react**
+  - Reemplazo de HeroIcons por lucide-react para consistencia
+
+- 🔄 **Mejoras en Core Studios UI**
+  - Integración de GlowingEffect
+  - i18n para títulos y descripciones de cards
+
+- 🔄 **Limpieza de footer**
+  - Eliminados iconos de Twitter/X y Facebook
+  - Logo-timeline simplificado (solo logo sin texto)
+
+- 🔄 **Corrección de marca**
+  - "useTeam" → "UseTeam" en toda la aplicación
+
+- 🔄 **Mejoras en Footer**
+  - Efecto de subrayado animado en links del sitemap
+  - Icono de LinkedIn más grande (size-4 → size-6)
+  - Transiciones y estados hover mejorados
+
+- 🔄 **ScrollToTop actualizado**
+  - Compatibilidad con Lenis smooth scroll
+
 ## 2026-01-08
 
 ### Agregado
