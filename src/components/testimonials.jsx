@@ -1,7 +1,5 @@
 'use client'
 
-import { useTranslation } from 'react-i18next'
-import { ArrowLongRightIcon } from '@heroicons/react/24/solid'
 import { clsx } from 'clsx'
 import {
   motion,
@@ -9,7 +7,9 @@ import {
   useScroll,
   useSpring,
 } from 'framer-motion'
+import { MoveUp } from 'lucide-react'
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import useMeasure from 'react-use-measure'
 import { Container } from './container'
 import { Link } from './link'
@@ -159,7 +159,7 @@ function SimpleCallToAction() {
           className="inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600"
         >
           {t('testimonials_cta_link')}
-          <ArrowLongRightIcon className="size-5" />
+          <MoveUp className="size-5" />
         </Link>
       </div>
     </div>
@@ -191,9 +191,7 @@ export function Testimonials() {
     <div className="overflow-hidden py-32">
       <Container>
         <div ref={setReferenceWindowRef}>
-          <Subheading>
-            {t('testimonials_subheading')}
-          </Subheading>
+          <Subheading>{t('testimonials_subheading')}</Subheading>
           <Heading as="h3" className="mt-2">
             {t('testimonials_heading')}
           </Heading>

@@ -1,11 +1,11 @@
-import { UserIcon } from '@heroicons/react/16/solid'
+import { UserRound } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
 
 export const authorType = defineType({
   name: 'author',
   title: 'Author',
   type: 'document',
-  icon: UserIcon,
+  icon: UserRound,
   fields: [
     defineField({
       name: 'name',
