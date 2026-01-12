@@ -7,7 +7,6 @@ import { GradientBackground } from '@/components/gradient'
 import { Navbar } from '@/components/navbar'
 import { Heading, Lead, Subheading } from '@/components/text'
 import { useTranslation } from 'react-i18next'
-import Lenis from 'lenis'
 import { useEffect, useState } from 'react'
 
 // Nota: Los metadatos no funcionan en componentes 'use client'
@@ -109,32 +108,6 @@ export default function Contact() {
   const { t } = useTranslation('Home')
   const [isScrolled, setIsScrolled] = useState(false)
   const [navbarHeight, setNavbarHeight] = useState(0)
-
-  // Inicializar Lenis para smooth scroll
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    })
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    return () => {
-      lenis.destroy()
-    }
-  }, [])
 
   // Detectar cuando la navbar se vuelve fixed y obtener su altura
   useEffect(() => {

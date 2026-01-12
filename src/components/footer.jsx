@@ -17,13 +17,16 @@ function SitemapLinks({ children }) {
   return <ul className="mt-6 space-y-4 text-sm/6">{children}</ul>
 }
 
-function SitemapLink(props) {
+function SitemapLink({ children, className, ...props }) {
   return (
     <li>
       <Link
         {...props}
-        className="font-medium text-white data-hover:text-gray-950/75"
-      />
+        className={`font-medium text-white transition-colors duration-200 flex items-center group ${className || ''}`}
+      >
+        <span className="w-0 group-hover:w-2 h-0.5 bg-white rounded-full mr-0 group-hover:mr-2 transition-all duration-300" />
+        {children}
+      </Link>
     </li>
   )
 }
@@ -96,7 +99,7 @@ function SocialLinks() {
         aria-label="Visit us on LinkedIn"
         className="text-gray-950 data-hover:text-gray-950/75"
       >
-        <SocialIconLinkedIn className="size-4" />
+        <SocialIconLinkedIn className="size-6" />
       </Link>
     </>
   )

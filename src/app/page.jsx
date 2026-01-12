@@ -19,7 +19,6 @@ import { Screenshot } from '@/components/screenshot'
 import { AnimatedHeading, Subheading } from '@/components/text'
 import { ChevronRight } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
-import Lenis from 'lenis'
 import { Blocks, Heart, SparklesIcon, TrendingUp, Zap } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -401,32 +400,6 @@ function GridItem({ area, icon, title, description }) {
 }
 
 export default function Home() {
-  // Inicializar Lenis para smooth scroll
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    })
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    return () => {
-      lenis.destroy()
-    }
-  }, [])
-
   return (
     <div className="overflow-hidden">
       <Hero/>

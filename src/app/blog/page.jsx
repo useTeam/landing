@@ -18,9 +18,9 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Check, ChevronLeft, ChevronRight, ChevronsUpDownIcon, Rss } from 'lucide-react'
 import { clsx } from 'clsx'
 import dayjs from 'dayjs'
-import Lenis from 'lenis'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Loader } from '@/components/loader'
 
 // Metadata se maneja en una página separada (no-client)
 // export const metadata = {
@@ -251,32 +251,6 @@ export default function Blog({ searchParams }) {
   const [category, setCategory] = useState(undefined)
   const [blogData, setBlogData] = useState(null)
   const {t} = useTranslation(['blog'])
- 
-  
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    })
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    return () => {
-      lenis.destroy()
-    }
-  }, [])
 
   // Detectar cuando la navbar se vuelve fixed y obtener su altura
   useEffect(() => {
@@ -363,10 +337,7 @@ export default function Blog({ searchParams }) {
     return (
       <main className="overflow-hidden">
         <GradientBackground />
-        <Container>
-          <Navbar />
-          <div className="mt-16">Loading...</div>
-        </Container>
+        <Loader text="Cargando blogs..." />
       </main>
     )
   }
@@ -384,7 +355,7 @@ export default function Blog({ searchParams }) {
           <Navbar />
           <Subheading className="mt-16">Blog</Subheading>
           <Heading as="h1" className="mt-2">
-           {t('blog_heading')}
+            {t('blog_heading')}
           </Heading>
           <Lead className="mt-6 max-w-3xl">
           {t('blog_lead')}

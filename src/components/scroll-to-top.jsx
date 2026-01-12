@@ -2,11 +2,13 @@
 
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from "react"
-import { ArrowUpIcon } from "@heroicons/react/24/solid"
+import { ArrowUp } from 'lucide-react'
+import { useLenis } from '@/providers/LenisProvider'
 
 export function ScrollToTop() {
   const { t } = useTranslation('Home')
   const [isVisible, setIsVisible] = useState(false)
+  const lenis = useLenis()
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -23,10 +25,15 @@ export function ScrollToTop() {
   }, [])
 
   const scrollToTop = (e) => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: false })
+    } else {
+      // Fallback si Lenis no está disponible
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }
     
     e.currentTarget.blur()
   }
@@ -41,7 +48,7 @@ export function ScrollToTop() {
       }`}
       aria-label={t('footer_scrollToTop')}
     >
-      <ArrowUpIcon className="h-5 w-5" />
+      <ArrowUp className="h-5 w-5" />
     </button>
   )
 }

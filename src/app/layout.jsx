@@ -1,5 +1,6 @@
 import { ClientHtml } from '@/components/client-html'
 import TranslationsProvider from '@/providers/TranslationProvider'
+import { LenisProvider } from '@/providers/LenisProvider'
 import '@/styles/tailwind.css'
 import initTranslations from '@/app/i18n'
 import { dir } from "i18next";
@@ -81,8 +82,10 @@ export default async function RootLayout({ children }) {
           namespaces={i18nNamespaces}
           resources={resources}
         >
-          <ClientHtml locale={locale}>{children}</ClientHtml>
-          <ScrollToTop />
+          <LenisProvider>
+            <ClientHtml locale={locale}>{children}</ClientHtml>
+            <ScrollToTop />
+          </LenisProvider>
         </TranslationsProvider>
       </body>
     </html>
