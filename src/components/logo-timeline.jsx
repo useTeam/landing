@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { Mark } from './logo'
+import { MarkWithoutText } from './logo'
 
 function Row({ children }) {
   return (
@@ -32,7 +32,7 @@ export function LogoTimeline() {
     <div aria-hidden="true" className="relative h-full overflow-hidden">
       <div className="absolute inset-0 top-8 z-10 flex items-center justify-center">
         <div className="relative flex items-center justify-center rounded-xl bg-linear-to-t from-white/5 to-white/25 py-3 px-4 shadow-sm ring-1 ring-white/10 outline outline-offset-[-5px] outline-white/5 backdrop-blur-xs ring-inset">
-          <Mark className="fill-white" />
+          <MarkWithoutText  className="fill-white" />
         </div>
       </div>
       <div className="@container absolute inset-0 grid grid-cols-1 pt-8">
