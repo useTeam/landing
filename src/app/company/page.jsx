@@ -7,34 +7,26 @@ import { Footer } from '@/components/footer'
 import { GradientBackground } from '@/components/gradient'
 import { Navbar } from '@/components/navbar'
 import { Heading, Lead, Subheading } from '@/components/text'
+import { useTranslation } from 'react-i18next'
 import Lenis from 'lenis'
 import { useEffect, useState } from 'react'
 
 function Header() {
+  const { t } = useTranslation('company')
   return (
     <Container className="mt-16">
-      <Heading as="h1">Helping companies generate revenue.</Heading>
+      <Heading as="h1">{t('header_title')}</Heading>
       <Lead className="mt-6 max-w-3xl">
-        We’re on a mission to transform revenue organizations by harnessing vast
-        amounts of illegally acquired customer data.
+        {t('header_subtitle')}
       </Lead>
       <section className="mt-16 grid grid-cols-1 lg:grid-cols-2 lg:gap-12">
         <div className="max-w-lg">
-          <h2 className="text-2xl font-medium tracking-tight">Our mission</h2>
+          <h2 className="text-2xl font-medium tracking-tight">{t('header_mission_title')}</h2>
           <p className="mt-6 text-sm/6 text-gray-600">
-            At useTeam, we are dedicated to transforming the way revenue
-            organizations source and close deals. Our mission is to provide our
-            customers with an unfair advantage over both their competitors and
-            potential customers through insight and analysis. We’ll stop at
-            nothing to get you the data you need to close a deal.
+            {t('header_mission_paragraph1')}
           </p>
           <p className="mt-8 text-sm/6 text-gray-600">
-            We’re customer-obsessed — putting the time in to build a detailed
-            financial picture of every one of our customers so that we know more
-            about your business than you do. We are in this together, mostly
-            because we are all implicated in large-scale financial crime. In our
-            history as a company, we’ve never lost a customer, because if any
-            one of us talks, we all go down.
+            {t('header_mission_paragraph2')}
           </p>
         </div>
         <div className="pt-20 lg:row-span-2 lg:-mr-16 xl:mr-auto">
@@ -70,29 +62,29 @@ function Header() {
           </div>
         </div>
         <div className="max-lg:mt-16 lg:col-span-1">
-          <Subheading>The Numbers</Subheading>
+          <Subheading>{t('header_numbers_title')}</Subheading>
           <hr className="mt-6 border-t border-gray-200" />
           <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
             <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
-              <dt className="text-sm/6 text-gray-600">Raised</dt>
+              <dt className="text-sm/6 text-gray-600">{t('header_numbers_raised')}</dt>
               <dd className="order-first text-6xl font-medium tracking-tight">
                 $<AnimatedNumber start={100} end={150} />M
               </dd>
             </div>
             <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
-              <dt className="text-sm/6 text-gray-600">Companies</dt>
+              <dt className="text-sm/6 text-gray-600">{t('header_numbers_companies')}</dt>
               <dd className="order-first text-6xl font-medium tracking-tight">
                 <AnimatedNumber start={15} end={30} />K
               </dd>
             </div>
             <div className="flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-gray-200 max-sm:pb-4">
-              <dt className="text-sm/6 text-gray-600">Deals Closed</dt>
+              <dt className="text-sm/6 text-gray-600">{t('header_numbers_deals_closed')}</dt>
               <dd className="order-first text-6xl font-medium tracking-tight">
                 <AnimatedNumber start={0.9} end={1.5} decimals={1} />M
               </dd>
             </div>
             <div className="flex flex-col gap-y-2">
-              <dt className="text-sm/6 text-gray-600">Leads Generated</dt>
+              <dt className="text-sm/6 text-gray-600">{t('header_numbers_leads_generated')}</dt>
               <dd className="order-first text-6xl font-medium tracking-tight">
                 <AnimatedNumber start={150} end={200} />M
               </dd>
@@ -117,37 +109,27 @@ function Person({ name, description, img }) {
 }
 
 function Team() {
+  const { t } = useTranslation('company')
   return (
     <Container className="mt-32">
-      <Subheading>Meet the team</Subheading>
+      <Subheading>{t('team_subheading')}</Subheading>
       <Heading as="h3" className="mt-2">
-        Founded by an all-star team.
+        {t('team_title')}
       </Heading>
       <Lead className="mt-6 max-w-3xl">
-        useTeam is founded by two of the best developers in the business and backed
-        by investors who look the other way.
+        {t('team_subtitle')}
       </Lead>
       <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
         <div className="max-w-lg">
           <p className="text-sm/6 text-gray-600">
-            Years ago, while working as developers at rival companies,
-            Thomas, Ben, and Natalie were discussing a big client they had all
-            been competing for. Joking about seeing the terms of each other’s
-            offers, they had an idea: what if they shared data to win deals and
-            split the commission behind their companies’ backs? It turned out to
-            be an incredible success, and that idea became the kernel for
-            useTeam.
+            {t('team_story_paragraph1')}
           </p>
           <p className="mt-8 text-sm/6 text-gray-600">
-            Today, useTeam transforms revenue organizations by harnessing
-            illegally acquired customer and competitor data, using it to provide
-            extraordinary leverage. More than 30,000 companies rely on useTeam
-            to undercut their competitors and extort their customers, all
-            through a single integrated platform.
+            {t('team_story_paragraph2')}
           </p>
           <div className="mt-6">
             <Button className="w-full sm:w-auto" href="#">
-              Join us
+              {t('team_join_button')}
             </Button>
           </div>
         </div>
@@ -162,7 +144,7 @@ function Team() {
         </div>
       </div>
       <Subheading as="h3" className="mt-24">
-        The team
+        {t('team_section_title')}
       </Subheading>
       <hr className="mt-6 border-t border-gray-200" />
       <ul
@@ -220,18 +202,18 @@ function Team() {
 }
 
 function Investors() {
+  const { t } = useTranslation('company')
   return (
     <Container className="mt-32">
-      <Subheading>Investors</Subheading>
+      <Subheading>{t('investors_subheading')}</Subheading>
       <Heading as="h3" className="mt-2">
-        Funded by industry-leaders.
+        {t('investors_title')}
       </Heading>
       <Lead className="mt-6 max-w-3xl">
-        We are fortunate to be backed by the best investors in the industry —
-        both literal and metaphorical partners in crime.
+        {t('investors_subtitle')}
       </Lead>
       <Subheading as="h3" className="mt-24">
-        Venture Capital
+        {t('investors_venture_capital')}
       </Subheading>
       <hr className="mt-6 border-t border-gray-200" />
       <ul
@@ -245,26 +227,18 @@ function Investors() {
             className="h-14"
           />
           <p className="mt-6 max-w-lg text-sm/6 text-gray-500">
-            Remington Schwartz has been a driving force in the tech industry,
-            backing bold entrepreneurs who explore grey areas in financial and
-            privacy law. Their deep industry expertise and extensive political
-            lobbying provide their portfolio companies with favorable regulation
-            and direct access to lawmakers.
+            {t('investors_remington_description')}
           </p>
         </li>
         <li>
           <img alt="Deccel" src="/investors/deccel.svg" className="h-14" />
           <p className="mt-6 max-w-lg text-sm/6 text-gray-500">
-            Deccel has been at the forefront of innovation, investing in
-            pioneering companies across various sectors, including technology,
-            consumer goods, and healthcare. Their philosophy of ‘plausible
-            deniability’ and dedication to looking the other way have helped
-            produce some of the world’s most controversial companies.
+            {t('investors_deccel_description')}
           </p>
         </li>
       </ul>
       <Subheading as="h3" className="mt-24">
-        Individual investors
+        {t('investors_individual_title')}
       </Subheading>
       <hr className="mt-6 border-t border-gray-200" />
       <ul
@@ -307,6 +281,7 @@ function Investors() {
 }
 
 function Testimonial() {
+  const { t } = useTranslation('company')
   return (
     <div className="relative flex aspect-square flex-col justify-end overflow-hidden rounded-3xl sm:aspect-5/4 lg:aspect-3/4">
       <img
@@ -321,8 +296,7 @@ function Testimonial() {
       <figure className="relative p-10">
         <blockquote>
           <p className="relative text-xl/7 text-white before:absolute before:-translate-x-full before:content-['“'] after:absolute after:content-['”']">
-            We&apos;ve managed to put two of our main competitors out of
-            business in 6 months.
+          {t('testimonial_quote')}
           </p>
         </blockquote>
         <figcaption className="mt-6 border-t border-white/20 pt-6">
@@ -339,19 +313,19 @@ function Testimonial() {
 }
 
 function Careers() {
+  const { t } = useTranslation('company')
   return (
     <Container className="my-32">
-      <Subheading>Careers</Subheading>
+      <Subheading>{t('careers_subheading')}</Subheading>
       <Heading as="h3" className="mt-2">
-        Join our fully remote team.
+        {t('careers_title')}
       </Heading>
       <Lead className="mt-6 max-w-3xl">
-        We work together from all over the world, mainly from locations without
-        extradition agreements.
+        {t('careers_subtitle')}
       </Lead>
       <div className="mt-24 grid grid-cols-1 gap-16 lg:grid-cols-[1fr_24rem]">
         <div className="lg:max-w-2xl">
-          <Subheading as="h3">Open positions</Subheading>
+          <Subheading as="h3">{t('careers_open_positions')}</Subheading>
           <div>
             <table className="w-full text-left">
               <colgroup>
@@ -361,77 +335,77 @@ function Careers() {
               </colgroup>
               <thead className="sr-only">
                 <tr>
-                  <th scope="col">Title</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Read more</th>
+                  <th scope="col">{t('careers_table_title')}</th>
+                  <th scope="col">{t('careers_table_location')}</th>
+                  <th scope="col">{t('careers_table_read_more')}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="colgroup" colSpan={3} className="px-0 pt-10 pb-0">
                     <div className="-mx-4 rounded-lg bg-gray-50 px-4 py-3 text-sm/6 font-semibold">
-                      Engineering
+                      {t('careers_engineering')}
                     </div>
                   </th>
                 </tr>
                 <tr className="border-b border-dotted border-gray-200 text-sm/6 font-normal">
-                  <td className="px-0 py-4">iOS Developer</td>
-                  <td className="px-0 py-4 text-gray-600">Remote</td>
+                  <td className="px-0 py-4">{t('careers_ios_developer')}</td>
+                  <td className="px-0 py-4 text-gray-600">{t('careers_remote')}</td>
                   <td className="px-0 py-4 text-right">
                     <Button variant="outline" href="#">
-                      View listing
+                      {t('careers_view_listing')}
                     </Button>
                   </td>
                 </tr>
                 <tr className="border-b border-dotted border-gray-200 text-sm/6 font-normal">
-                  <td className="px-0 py-4">Backend Engineer</td>
-                  <td className="px-0 py-4 text-gray-600">Remote</td>
+                  <td className="px-0 py-4">{t('careers_backend_engineer')}</td>
+                  <td className="px-0 py-4 text-gray-600">{t('careers_remote')}</td>
                   <td className="px-0 py-4 text-right">
                     <Button variant="outline" href="#">
-                      View listing
+                      {t('careers_view_listing')}
                     </Button>
                   </td>
                 </tr>
                 <tr className="text-sm/6 font-normal">
-                  <td className="px-0 py-4">Product Engineer</td>
-                  <td className="px-0 py-4 text-gray-600">Remote</td>
+                  <td className="px-0 py-4">{t('careers_product_engineer')}</td>
+                  <td className="px-0 py-4 text-gray-600">{t('careers_remote')}</td>
                   <td className="px-0 py-4 text-right">
                     <Button variant="outline" href="#">
-                      View listing
+                      {t('careers_view_listing')}
                     </Button>
                   </td>
                 </tr>
                 <tr>
                   <th scope="colgroup" colSpan={3} className="px-0 pt-5 pb-0">
                     <div className="-mx-4 rounded-lg bg-gray-50 px-4 py-3 text-sm/6 font-semibold">
-                      Design
+                      {t('careers_design')}
                     </div>
                   </th>
                 </tr>
                 <tr className="border-b border-dotted border-gray-200 text-sm/6 font-normal">
-                  <td className="px-0 py-4">Principal Designer</td>
-                  <td className="px-0 py-4 text-gray-600">Remote</td>
+                  <td className="px-0 py-4">{t('careers_principal_designer')}</td>
+                  <td className="px-0 py-4 text-gray-600">{t('careers_remote')}</td>
                   <td className="px-0 py-4 text-right">
                     <Button variant="outline" href="#">
-                      View listing
+                      {t('careers_view_listing')}
                     </Button>
                   </td>
                 </tr>
                 <tr className="border-b border-dotted border-gray-200 text-sm/6 font-normal">
-                  <td className="px-0 py-4">Designer</td>
-                  <td className="px-0 py-4 text-gray-600">Remote</td>
+                  <td className="px-0 py-4">{t('careers_designer')}</td>
+                  <td className="px-0 py-4 text-gray-600">{t('careers_remote')}</td>
                   <td className="px-0 py-4 text-right">
                     <Button variant="outline" href="#">
-                      View listing
+                      {t('careers_view_listing')}
                     </Button>
                   </td>
                 </tr>
                 <tr className="text-sm/6 font-normal">
-                  <td className="px-0 py-4">Senior Designer</td>
-                  <td className="px-0 py-4 text-gray-600">Remote</td>
+                  <td className="px-0 py-4">{t('careers_senior_designer')}</td>
+                  <td className="px-0 py-4 text-gray-600">{t('careers_remote')}</td>
                   <td className="px-0 py-4 text-right">
                     <Button variant="outline" href="#">
-                      View listing
+                      {t('careers_view_listing')}
                     </Button>
                   </td>
                 </tr>

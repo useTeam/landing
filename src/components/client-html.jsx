@@ -1,17 +1,14 @@
 'use client'
 
-import { useLanguage } from '@/context/language-context'
 import { useEffect } from 'react'
 
-export function ClientHtml({ children }) {
-  const { language, isClient } = useLanguage()
-
+export function ClientHtml({ children, locale }) {
   useEffect(() => {
-    // Solo actualizar el atributo lang si estamos en el cliente
-    if (isClient) {
-      document.documentElement.lang = language
+    // Actualizar el atributo lang del documento
+    if (locale) {
+      document.documentElement.lang = locale
     }
-  }, [language, isClient])
+  }, [locale])
 
   return <>{children}</>
 }

@@ -1,11 +1,7 @@
 'use client'
 
 import { PlusGrid, PlusGridItem, PlusGridRow } from '@/components/plus-grid'
-import { useLanguage } from '@/context/language-context'
-import { getTranslation } from '@/translations'
-import { ArrowUpIcon } from '@heroicons/react/24/solid'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from './button'
 import { Container } from './container'
 import { Gradient } from './gradient'
@@ -33,61 +29,61 @@ function SitemapLink(props) {
 }
 
 function Sitemap() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   return (
     <>
       <div>
         <SitemapHeading>
-          {getTranslation('footer.sections.product.title', language)}
+          {t('footer_sections_product_title')}
         </SitemapHeading>
         <SitemapLinks>
           <SitemapLink href="#">
-            {getTranslation('footer.sections.product.analysis', language)}
+            {t('footer_sections_product_analysis')}
           </SitemapLink>
           <SitemapLink href="#">
-            {getTranslation('footer.sections.product.api', language)}
+            {t('footer_sections_product_api')}
           </SitemapLink>
         </SitemapLinks>
       </div>
       <div>
         <SitemapHeading>
-          {getTranslation('footer.sections.company.title', language)}
+          {t('footer_sections_company_title')}
         </SitemapHeading>
         <SitemapLinks>
           <SitemapLink href="#">
-            {getTranslation('footer.sections.company.careers', language)}
+            {t('footer_sections_company_careers')}
           </SitemapLink>
           <SitemapLink href="/blog">
-            {getTranslation('footer.sections.company.blog', language)}
+            {t('footer_sections_company_blog')}
           </SitemapLink>
           <SitemapLink href="/company">
-            {getTranslation('footer.sections.company.aboutUs', language)}
+            {t('footer_sections_company_aboutUs')}
           </SitemapLink>
         </SitemapLinks>
       </div>
       <div>
         <SitemapHeading>
-          {getTranslation('footer.sections.support.title', language)}
+          {t('footer_sections_support_title')}
         </SitemapHeading>
         <SitemapLinks>
           <SitemapLink href="#">
-            {getTranslation('footer.sections.support.helpCenter', language)}
+            {t('footer_sections_support_helpCenter')}
           </SitemapLink>
           <SitemapLink href="#">
-            {getTranslation('footer.sections.support.community', language)}
+            {t('footer_sections_support_community')}
           </SitemapLink>
         </SitemapLinks>
       </div>
       <div>
         <SitemapHeading>
-          {getTranslation('footer.sections.legal.title', language)}
+          {t('footer_sections_legal_title')}
         </SitemapHeading>
         <SitemapLinks>
           <SitemapLink href="#">
-            {getTranslation('footer.sections.legal.terms', language)}
+            {t('footer_sections_legal_terms')}
           </SitemapLink>
           <SitemapLink href="#">
-            {getTranslation('footer.sections.legal.privacy', language)}
+            {t('footer_sections_legal_privacy')}
           </SitemapLink>
         </SitemapLinks>
       </div>
@@ -149,13 +145,13 @@ function SocialLinks() {
 function Copyright() {
   return (
     <div className="text-sm/6 text-white">
-      &copy; {new Date().getFullYear()} useTeam
+      &copy; {new Date().getFullYear()} UseTeam
     </div>
   )
 }
 
 export function Footer() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   return (
     <footer>
       <div className="relative px-4 py-4 lg:px-8 lg:py-12">
@@ -164,18 +160,18 @@ export function Footer() {
             <div className="relative mb-12 border-b border-gray-200/40 py-24 text-center">
               <hgroup>
                 <Subheading className="text-white">
-                  {getTranslation('footer.sections.getStarted', language)}
+                  {t('footer_sections_getStarted')}
                 </Subheading>
                 <p className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                  {getTranslation('footer.cta.title', language)}
+                  {t('footer_cta_title')}
                 </p>
               </hgroup>
               <p className="mx-auto mt-6 max-w-xs text-sm/6 font-semibold text-gray-300">
-                {getTranslation('footer.cta.subtitle', language)}
+                {t('footer_cta_subtitle')}
               </p>
               <div className="mt-10">
                 <Button className="w-full sm:w-auto" href="/contact">
-                  {getTranslation('footer.cta.button', language)}
+                  {t('footer_cta_button')}
                 </Button>
               </div>
             </div>

@@ -16,7 +16,7 @@ export function Logo({ className, textClassName }) {
       <div className="relative">
         <Image
           src={logoImage}
-          alt="useTeam Logo"
+          alt="UseTeam Logo"
           width={144}
           height={144}
           className="object-contain"
@@ -35,7 +35,7 @@ export function Mark({ className }) {
       <div className="relative">
         <Image
           src={logoImage}
-          alt="useTeam Logo"
+          alt="UseTeam Logo"
           width={112}
           height={112}
           className="object-contain"
@@ -55,7 +55,7 @@ export function MarkWithoutText({ className }) {
       <div className="relative">
         <Image
           src={bigLogo}
-          alt="useTeam Logo"
+          alt="UseTeam Logo"
           width={32}
           height={32}
           className="object-contain"
