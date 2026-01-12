@@ -1,6 +1,5 @@
 import { Link } from '@/components/link'
-import { useLanguage } from '@/context/language-context'
-import { getTranslation } from '@/translations'
+import { useTranslation } from 'react-i18next'
 import { useGSAP } from '@gsap/react'
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import gsap from 'gsap'
@@ -17,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger)
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1)
   const [hasClicked, setHasClicked] = useState(false)
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
 
   const [loading, setLoading] = useState(true)
   const [loadedVideos, setLoadedVideos] = useState(0)
@@ -145,7 +144,7 @@ const Hero = () => {
             href="/blog/radiant-raises-100m-series-a-from-tailwind-ventures"
             className="flex items-center gap-1 rounded-full bg-fuchsia-950/35 px-3 py-0.5 text-sm/6 font-medium text-white data-hover:bg-fuchsia-950/30"
           >
-            {getTranslation('hero2.banner', language)}
+            {t('hero2_banner')}
             <ChevronRightIcon className="size-4" />
           </Link>
         }
@@ -193,13 +192,13 @@ const Hero = () => {
         <h1
           className="special-font hero-heading absolute right-5 bottom-5 z-40 font-bold text-5xl text-blue-100 uppercase sm:right-10 sm:text-7xl md:text-9xl lg:text-[10rem]"
           dangerouslySetInnerHTML={{
-            __html: getTranslation('hero2.software', language),
+            __html: t('hero2_software'),
           }}
         />
         <h1
           className="special-font hero-heading absolute right-5 bottom-5 z-40 font-bold text-5xl text-blue-100 uppercase sm:right-10 sm:text-7xl md:text-9xl lg:text-[10rem]"
           dangerouslySetInnerHTML={{
-            __html: getTranslation('hero2.software', language),
+            __html: t('hero2_software'),
           }}
         />
 
@@ -208,20 +207,20 @@ const Hero = () => {
             <h1
               className="special-font hero-heading font-bold text-5xl text-blue-100 uppercase sm:right-10 sm:text-7xl md:text-9xl lg:text-[10rem]"
               dangerouslySetInnerHTML={{
-                __html: getTranslation('hero2.redefine', language),
+                __html: t('hero2_redefine'),
               }}
             />
 
             <p
               className="mb-5 max-w-80 rounded-lg text-blue-100"
               dangerouslySetInnerHTML={{
-                __html: getTranslation('hero2.tagline', language),
+                __html: t('hero2_tagline'),
               }}
             />
 
             <Button
               id="watch-demo"
-              title={getTranslation('hero2.watchDemo', language)}
+              title={t('hero2_watchDemo')}
               leftIcon={<TiLocationArrow />}
               containerClass="bg-[linear-gradient(110deg,var(--Secondary-Color,#00C6FF)_1.38%,var(--Primary-Color,#007BFF)_23.26%,#0052A9_36.39%,var(--Black,#000)_96.19%)] text-white flex-center gap-1"
             />
@@ -232,7 +231,7 @@ const Hero = () => {
       <h1
         className="special-font hero-heading absolute right-5 bottom-5 font-bold text-5xl text-black uppercase sm:right-10 sm:text-7xl md:text-9xl lg:text-[10rem]"
         dangerouslySetInnerHTML={{
-          __html: getTranslation('hero2.software', language),
+          __html: t('hero2_software'),
         }}
       />
     </div>

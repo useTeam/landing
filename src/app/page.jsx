@@ -16,8 +16,7 @@ import { Map } from '@/components/map'
 import { Navbar } from '@/components/navbar'
 import { Screenshot } from '@/components/screenshot'
 import { AnimatedHeading, Subheading } from '@/components/text'
-import { useLanguage } from '@/context/language-context'
-import { getTranslation } from '@/translations'
+import { useTranslation } from 'react-i18next'
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 import { motion, useInView } from 'framer-motion'
@@ -89,7 +88,7 @@ function CoreStudioCard({
 function CoreStudiosSection() {
   const titleRef = useRef(null)
   const isTitleInView = useInView(titleRef, { once: true, amount: 0.5 })
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
 
   return (
     <div className="relative overflow-hidden bg-black py-24 sm:py-32">
@@ -97,14 +96,14 @@ function CoreStudiosSection() {
         <div className="relative ">
           {/* Title Section */}
           <Subheading>
-            {getTranslation('feature.subheading', language)}
+            {t('feature_subheading')}
           </Subheading>
 
           <AnimatedHeading
             as="h2"
             className="mb-16 font-bold text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            {getTranslation('feature.title', language)}
+            {t('feature_title')}
           </AnimatedHeading>
 
           {/* Cards Grid */}
@@ -156,7 +155,7 @@ function CoreStudiosSection() {
 }
 
 function Hero() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   const [isScrolled, setIsScrolled] = useState(false)
   const [navbarHeight, setNavbarHeight] = useState(0)
 
@@ -194,7 +193,7 @@ function Hero() {
               href="/blog/radiant-raises-100m-series-a-from-tailwind-ventures"
               className="flex items-center gap-1 rounded-full bg-fuchsia-950/35 px-3 py-0.5 text-sm/6 font-medium text-white data-hover:bg-fuchsia-950/30"
             >
-              {getTranslation('hero.banner', language)}
+              {t('hero_banner')}
               <ChevronRightIcon className="size-4" />
             </Link>
           }
@@ -203,14 +202,14 @@ function Hero() {
           <div className="relative flex w-full flex-col items-center justify-center gap-8 md:items-center lg:flex-row ">
             <div className="w-full lg:w-1/2 xl:w-1/2">
               <h1 className="animacionInferiorTexto max-w-sm font-display text-5xl/[0.9] font-medium tracking-tight text-balance text-white sm:text-7xl/[0.8] md:text-8xl/[0.9] lg:text-6xl/[0.9] xl:text-8xl/[0.9]">
-                {getTranslation('hero.title', language)}
+                {t('hero_title')}
               </h1>
               <p className="animacionSuperiorTexto mt-8 max-w-2xl text-lg/7 font-medium text-white/75 sm:text-2xl/8 lg:text-[1.2rem] xl:text-2xl/[1.5]">
-                {getTranslation('hero.description', language)}
+                {t('hero_description')}
               </p>
               <div className="animacionSuperiorTexto mt-8 flex flex-col gap-x-6 gap-y-4 sm:flex-row md:mb-0">
                 <Button href="/contact">
-                  {getTranslation('common.getStarted', language)}
+                  {t('common_getStarted')}
                 </Button>
               </div>
             </div>
@@ -226,12 +225,12 @@ function Hero() {
 }
 
 function FeatureSection() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   return (
     <div className="overflow-hidden">
       <Container className="pb-24">
         <AnimatedHeading as="h2" className="max-w-3xl">
-          {getTranslation('feature.title', language)}
+          {t('feature_title')}
         </AnimatedHeading>
         <Screenshot
           width={1216}
@@ -245,22 +244,19 @@ function FeatureSection() {
 }
 
 function BentoSection() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   return (
     <Container>
-      <Subheading>{getTranslation('bento.sales', language)}</Subheading>
+      <Subheading>{t('bento_sales')}</Subheading>
       <AnimatedHeading as="h3" className="mt-2 max-w-7xl">
-        {getTranslation('bento.heading', language)}
+        {t('bento_heading')}
       </AnimatedHeading>
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
         <BentoCard
-          eyebrow={getTranslation('bento.cards.insight.eyebrow', language)}
-          title={getTranslation('bento.cards.insight.title', language)}
-          description={getTranslation(
-            'bento.cards.insight.description',
-            language,
-          )}
+          eyebrow={t('bento_cards_insight_eyebrow')}
+          title={t('bento_cards_insight_title')}
+          description={t('bento_cards_insight_description')}
           graphic={
             <div className="h-80 bg-[url(/screenshots/profile.png)] bg-[size:1000px_560px] bg-[left_-109px_top_-112px] bg-no-repeat" />
           }
@@ -270,12 +266,9 @@ function BentoSection() {
           delay={0}
         />
         <BentoCard
-          eyebrow={getTranslation('bento.cards.analysis.eyebrow', language)}
-          title={getTranslation('bento.cards.analysis.title', language)}
-          description={getTranslation(
-            'bento.cards.analysis.description',
-            language,
-          )}
+          eyebrow={t('bento_cards_analysis_eyebrow')}
+          title={t('bento_cards_analysis_title')}
+          description={t('bento_cards_analysis_description')}
           graphic={
             <div className="absolute inset-0 bg-[url(/screenshots/competitors.png)] bg-[size:1100px_650px] bg-[left_-38px_top_-73px] bg-no-repeat" />
           }
@@ -285,12 +278,9 @@ function BentoSection() {
           delay={0.2}
         />
         <BentoCard
-          eyebrow={getTranslation('bento.cards.speed.eyebrow', language)}
-          title={getTranslation('bento.cards.speed.title', language)}
-          description={getTranslation(
-            'bento.cards.speed.description',
-            language,
-          )}
+          eyebrow={t('bento_cards_speed_eyebrow')}
+          title={t('bento_cards_speed_title')}
+          description={t('bento_cards_speed_description')}
           graphic={
             <div className="flex size-full pt-10 pl-10">
               <Keyboard highlighted={['LeftCommand', 'LeftShift', 'D']} />
@@ -301,24 +291,18 @@ function BentoSection() {
           delay={0.4}
         />
         <BentoCard
-          eyebrow={getTranslation('bento.cards.source.eyebrow', language)}
-          title={getTranslation('bento.cards.source.title', language)}
-          description={getTranslation(
-            'bento.cards.source.description',
-            language,
-          )}
+          eyebrow={t('bento_cards_source_eyebrow')}
+          title={t('bento_cards_source_title')}
+          description={t('bento_cards_source_description')}
           graphic={<LogoCluster />}
           className="lg:col-span-2"
           direction="up"
           delay={0.5}
         />
         <BentoCard
-          eyebrow={getTranslation('bento.cards.limitless.eyebrow', language)}
-          title={getTranslation('bento.cards.limitless.title', language)}
-          description={getTranslation(
-            'bento.cards.limitless.description',
-            language,
-          )}
+          eyebrow={t('bento_cards_limitless_eyebrow')}
+          title={t('bento_cards_limitless_title')}
+          description={t('bento_cards_limitless_description')}
           graphic={<Map />}
           className="max-lg:rounded-b-4xl lg:col-span-2 lg:rounded-br-4xl"
           direction="right"
@@ -330,29 +314,23 @@ function BentoSection() {
 }
 
 function DarkBentoSection() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   return (
     <div className="mt-2 bg-black py-32">
       <Container>
         <Subheading dark>
-          {getTranslation('darkBento.outreach', language)}
+          {t('darkBento_outreach')}
         </Subheading>
         <AnimatedHeading as="h3" dark className="mt-2 max-w-7xl">
-          {getTranslation('darkBento.heading', language)}
+          {t('darkBento_heading')}
         </AnimatedHeading>
 
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
           <BentoCard
             dark
-            eyebrow={getTranslation(
-              'darkBento.cards.networking.eyebrow',
-              language,
-            )}
-            title={getTranslation('darkBento.cards.networking.title', language)}
-            description={getTranslation(
-              'darkBento.cards.networking.description',
-              language,
-            )}
+            eyebrow={t('darkBento_cards_networking_eyebrow')}
+            title={t('darkBento_cards_networking_title')}
+            description={t('darkBento_cards_networking_description')}
             graphic={
               <div className="h-80 bg-[url(/screenshots/networking.png)] bg-[size:851px_344px] bg-no-repeat" />
             }
@@ -363,18 +341,9 @@ function DarkBentoSection() {
           />
           <BentoCard
             dark
-            eyebrow={getTranslation(
-              'darkBento.cards.integrations.eyebrow',
-              language,
-            )}
-            title={getTranslation(
-              'darkBento.cards.integrations.title',
-              language,
-            )}
-            description={getTranslation(
-              'darkBento.cards.integrations.description',
-              language,
-            )}
+            eyebrow={t('darkBento_cards_integrations_eyebrow')}
+            title={t('darkBento_cards_integrations_title')}
+            description={t('darkBento_cards_integrations_description')}
             graphic={<LogoTimeline />}
             className="z-10 overflow-visible! lg:col-span-2 lg:rounded-tr-4xl"
             direction="right"
@@ -382,15 +351,9 @@ function DarkBentoSection() {
           />
           <BentoCard
             dark
-            eyebrow={getTranslation(
-              'darkBento.cards.meetings.eyebrow',
-              language,
-            )}
-            title={getTranslation('darkBento.cards.meetings.title', language)}
-            description={getTranslation(
-              'darkBento.cards.meetings.description',
-              language,
-            )}
+            eyebrow={t('darkBento_cards_meetings_eyebrow')}
+            title={t('darkBento_cards_meetings_title')}
+            description={t('darkBento_cards_meetings_description')}
             graphic={<LinkedAvatars />}
             className="lg:col-span-2 lg:rounded-bl-4xl"
             direction="left"
@@ -398,15 +361,9 @@ function DarkBentoSection() {
           />
           <BentoCard
             dark
-            eyebrow={getTranslation(
-              'darkBento.cards.engagement.eyebrow',
-              language,
-            )}
-            title={getTranslation('darkBento.cards.engagement.title', language)}
-            description={getTranslation(
-              'darkBento.cards.engagement.description',
-              language,
-            )}
+            eyebrow={t('darkBento_cards_engagement_eyebrow')}
+            title={t('darkBento_cards_engagement_title')}
+            description={t('darkBento_cards_engagement_description')}
             graphic={
               <div className="h-80 bg-[url(/screenshots/engagement.png)] bg-[size:851px_344px] bg-no-repeat" />
             }

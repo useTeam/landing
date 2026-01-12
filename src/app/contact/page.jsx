@@ -6,19 +6,15 @@ import { Footer } from '@/components/footer'
 import { GradientBackground } from '@/components/gradient'
 import { Navbar } from '@/components/navbar'
 import { Heading, Lead, Subheading } from '@/components/text'
-import { useLanguage } from '@/context/language-context'
-import { getTranslation } from '@/translations'
+import { useTranslation } from 'react-i18next'
 import Lenis from 'lenis'
 import { useEffect, useState } from 'react'
 
-// Metadata se maneja en una página separada (no-client)
-// export const metadata = {
-//   title: 'Contact Us',
-//   description: 'Get in touch with our team for any questions or inquiries.',
-// }
+// Nota: Los metadatos no funcionan en componentes 'use client'
+// Se deben manejar en un layout.tsx o usando generateMetadata en un componente server
 
 function ContactForm() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   return (
     <form
       action="https://formspree.io/f/xeogebrj"
@@ -31,17 +27,14 @@ function ContactForm() {
             htmlFor="name"
             className="block text-sm/6 font-medium text-gray-500"
           >
-            {getTranslation('contact.form.name.label', language)}
+            {t('contact_form_name_label')}
           </label>
           <input
             type="text"
             name="name"
             id="name"
             required
-            placeholder={getTranslation(
-              'contact.form.name.placeholder',
-              language,
-            )}
+            placeholder={t('contact_form_name_placeholder')}
             className="mt-1 block w-full rounded-lg border border-transparent bg-white/15 px-4 py-3 text-base text-gray-950 shadow-sm ring-1 ring-black/5 focus:border-transparent focus:ring-2 focus:ring-black/10"
           />
         </div>
@@ -50,17 +43,14 @@ function ContactForm() {
             htmlFor="email"
             className="block text-sm/6 font-medium text-gray-500"
           >
-            {getTranslation('contact.form.email.label', language)}
+            {t('contact_form_email_label')}
           </label>
           <input
             type="email"
             name="email"
             id="email"
             required
-            placeholder={getTranslation(
-              'contact.form.email.placeholder',
-              language,
-            )}
+            placeholder={t('contact_form_email_placeholder')}
             className="mt-1 block w-full rounded-lg border border-transparent bg-white/15 px-4 py-3 text-base text-gray-950 shadow-sm ring-1 ring-black/5 focus:border-transparent focus:ring-2 focus:ring-black/10"
           />
         </div>
@@ -69,23 +59,20 @@ function ContactForm() {
             htmlFor="message"
             className="block text-sm/6 font-medium text-gray-500"
           >
-            {getTranslation('contact.form.message.label', language)}
+            {t('contact_form_message_label')}
           </label>
           <textarea
             id="message"
             name="message"
             rows={4}
             required
-            placeholder={getTranslation(
-              'contact.form.message.placeholder',
-              language,
-            )}
+            placeholder={t('contact_form_message_placeholder')}
             className="mt-1 block w-full rounded-lg border border-transparent bg-white/15 px-4 py-3 text-base text-gray-950 shadow-sm ring-1 ring-black/5 focus:border-transparent focus:ring-2 focus:ring-black/10"
           />
         </div>
         <div>
           <Button type="submit" className="w-full">
-            {getTranslation('contact.form.submit', language)}
+            {t('contact_form_submit')}
           </Button>
         </div>
       </div>
@@ -94,19 +81,23 @@ function ContactForm() {
 }
 
 function ContactInfo() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   return (
     <div className="mt-12">
-      <Subheading>Contact Information</Subheading>
+      <Subheading>{t('contact_info_title')}</Subheading>
       <div className="mt-6 space-y-4">
         <div>
-          <h3 className="text-sm font-medium text-gray-500">Email</h3>
+          <h3 className="text-sm font-medium text-gray-500">
+            {t('contact_info_email_label')}
+          </h3>
           <p className="mt-1 text-sm text-gray-900">
             administracion@useteam.io
           </p>
         </div>
         <div>
-          <h3 className="text-sm font-medium text-gray-500">Phone</h3>
+          <h3 className="text-sm font-medium text-gray-500">
+            {t('contact_info_phone_label')}
+          </h3>
           <p className="mt-1 text-sm text-gray-900">+34 696-888-533</p>
         </div>
       </div>
@@ -115,7 +106,7 @@ function ContactInfo() {
 }
 
 export default function Contact() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   const [isScrolled, setIsScrolled] = useState(false)
   const [navbarHeight, setNavbarHeight] = useState(0)
 
@@ -177,12 +168,12 @@ export default function Contact() {
         <Container>
           <Navbar />
           <div className="mt-16 mb-32">
-            <Subheading>Contact Us</Subheading>
+            <Subheading>{t('contact_subheading')}</Subheading>
             <Heading as="h1" className="mt-2">
-              {getTranslation('contact.title', language)}
+              {t('contact_title')}
             </Heading>
             <Lead className="mt-6 max-w-3xl">
-              {getTranslation('contact.subtitle', language)}
+              {t('contact_subtitle')}
             </Lead>
             <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-2">
               <ContactForm />

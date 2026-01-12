@@ -1,5 +1,4 @@
 import { ClientHtml } from '@/components/client-html'
-import { LanguageProvider } from '@/context/language-context'
 import TranslationsProvider from '@/providers/TranslationProvider'
 import '@/styles/tailwind.css'
 import initTranslations from '@/app/i18n'
@@ -43,7 +42,7 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  const i18nNamespaces = ['Home', 'commons']
+  const i18nNamespaces = ['Home', 'commons', 'company', 'blog']
   const cookieStore = await cookies()
   const locale = cookieStore.get('NEXT_LOCALE')?.value || i18nConfig.defaultLocale
   const { resources } = await initTranslations(locale, i18nNamespaces)
@@ -82,10 +81,8 @@ export default async function RootLayout({ children }) {
           namespaces={i18nNamespaces}
           resources={resources}
         >
-          <LanguageProvider>
-            <ClientHtml>{children}</ClientHtml>
-            <ScrollToTop />
-          </LanguageProvider>
+          <ClientHtml locale={locale}>{children}</ClientHtml>
+          <ScrollToTop />
         </TranslationsProvider>
       </body>
     </html>

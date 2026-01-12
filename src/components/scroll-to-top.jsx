@@ -1,12 +1,11 @@
 'use client'
 
-import { useLanguage } from "@/context/language-context"
-import { getTranslation } from "@/translations"
+import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from "react"
 import { ArrowUpIcon } from "@heroicons/react/24/solid"
 
 export function ScrollToTop() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -40,9 +39,7 @@ export function ScrollToTop() {
           ? 'translate-y-0 opacity-100'
           : 'pointer-events-none translate-y-16 opacity-0'
       }`}
-      aria-label={
-        getTranslation('footer.scrollToTop', language) || 'Volver arriba'
-      }
+      aria-label={t('footer_scrollToTop')}
     >
       <ArrowUpIcon className="h-5 w-5" />
     </button>

@@ -26,6 +26,7 @@ import { clsx } from 'clsx'
 import dayjs from 'dayjs'
 import Lenis from 'lenis'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 // Metadata se maneja en una página separada (no-client)
 // export const metadata = {
@@ -255,8 +256,9 @@ export default function Blog({ searchParams }) {
   const [page, setPage] = useState(1)
   const [category, setCategory] = useState(undefined)
   const [blogData, setBlogData] = useState(null)
-
-  // Inicializar Lenis para smooth scroll
+  const {t} = useTranslation(['blog'])
+ 
+  
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -388,11 +390,10 @@ export default function Blog({ searchParams }) {
           <Navbar />
           <Subheading className="mt-16">Blog</Subheading>
           <Heading as="h1" className="mt-2">
-            What's happening at UseTeam.
+           {t('blog_heading')}
           </Heading>
           <Lead className="mt-6 max-w-3xl">
-            Stay informed with product updates, company news, and insights on how
-            to sell smarter at your company.
+          {t('blog_lead')}
           </Lead>
         </Container>
         {page === 1 && !category && featuredPosts && featuredPosts.length > 0 && (

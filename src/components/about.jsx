@@ -1,5 +1,4 @@
-import { useLanguage } from '@/context/language-context'
-import { getTranslation } from '@/translations'
+import { useTranslation } from 'react-i18next'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
@@ -8,7 +7,7 @@ import { AnimatedHeading } from './text'
 gsap.registerPlugin(ScrollTrigger)
 
 const About = () => {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   useGSAP(() => {
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
@@ -34,7 +33,7 @@ const About = () => {
         <p className="text-sm uppercase md:text-[10px]">Our work</p>
 
         <AnimatedHeading as="h2" className="text-center">
-          {getTranslation('feature.title', language)}
+          {t('feature_title')}
         </AnimatedHeading>
       </div>
 

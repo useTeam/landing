@@ -1,7 +1,6 @@
 'use client'
 
-import { useLanguage } from '@/context/language-context'
-import { getTranslation } from '@/translations'
+import { useTranslation } from 'react-i18next'
 import { ArrowLongRightIcon } from '@heroicons/react/24/solid'
 import { clsx } from 'clsx'
 import {
@@ -70,7 +69,8 @@ function TestimonialCard({
   scrollX,
   ...props
 }) {
-  const { language } = useLanguage()
+  const { i18n } = useTranslation()
+  const currentLanguage = i18n.language
   let ref = useRef(null)
 
   let computeOpacity = useCallback(() => {
@@ -137,7 +137,7 @@ function TestimonialCard({
           <p className="text-sm/6 font-medium text-white">{name}</p>
           <p className="text-sm/6 font-medium">
             <span className="bg-[linear-gradient(110deg,var(--Secondary-Color,#00C6FF)_1.38%,var(--Primary-Color,#007BFF)_23.26%,#0052A9_36.39%,var(--White,#fff)_96.19%)] bg-clip-text text-transparent">
-              {typeof title === 'object' ? title[language] : title}
+              {typeof title === 'object' ? title[currentLanguage] : title}
             </span>
           </p>
         </figcaption>
@@ -147,18 +147,18 @@ function TestimonialCard({
 }
 
 function SimpleCallToAction() {
-  const { language } = useLanguage()
+  const { t } = useTranslation('Home')
   return (
     <div>
       <p className="max-w-sm text-sm/6 text-gray-600">
-        {getTranslation('testimonials.cta.text', language)}
+        {t('testimonials_cta_text')}
       </p>
       <div className="mt-2">
         <Link
           href="/contact"
           className="inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600"
         >
-          {getTranslation('testimonials.cta.link', language)}
+          {t('testimonials_cta_link')}
           <ArrowLongRightIcon className="size-5" />
         </Link>
       </div>
@@ -167,7 +167,8 @@ function SimpleCallToAction() {
 }
 
 export function Testimonials() {
-  const { language } = useLanguage()
+  const { t, i18n } = useTranslation('Home')
+  const currentLanguage = i18n.language
   let scrollRef = useRef(null)
   let { scrollX } = useScroll({ container: scrollRef })
   let [setReferenceWindowRef, bounds] = useMeasure()
@@ -191,10 +192,10 @@ export function Testimonials() {
       <Container>
         <div ref={setReferenceWindowRef}>
           <Subheading>
-            {getTranslation('testimonials.subheading', language)}
+            {t('testimonials_subheading')}
           </Subheading>
           <Heading as="h3" className="mt-2">
-            {getTranslation('testimonials.heading', language)}
+            {t('testimonials_heading')}
           </Heading>
         </div>
       </Container>
@@ -217,7 +218,7 @@ export function Testimonials() {
               bounds={bounds}
               scrollX={scrollX}
             >
-              {typeof quote === 'object' ? quote[language] : quote}
+              {typeof quote === 'object' ? quote[currentLanguage] : quote}
             </TestimonialCard>
           ),
         )}

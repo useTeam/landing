@@ -1,8 +1,6 @@
 'use client'
 
-import { useLanguage } from '@/context/language-context'
 import useLanguageChanger from '@/hooks/useLanguageChanger'
-import { getTranslation } from '@/translations'
 import {
   Disclosure,
   DisclosureButton,
@@ -190,7 +188,6 @@ export function Navbar({ banner }) {
     pathname === '/blog' ||
     pathname?.startsWith('/blog/') ||
     pathname === '/contact'
-  const { language } = useLanguage()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isClient, setIsClient] = useState(false)
 
@@ -266,7 +263,7 @@ export function Navbar({ banner }) {
                   <PlusGridItem className="py-3" color={gridColor}>
                     <Link
                       href="/"
-                      title={getTranslation('navigation.home', language)}
+                      title="Home"
                     >
                       <Logo
                         className="h-10"
